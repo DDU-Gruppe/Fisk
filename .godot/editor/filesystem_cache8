@@ -1,6 +1,16 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1740558437
-icon.svg::CompressedTexture2D::5391476652708150876::1740556862::1740558438::1::::<><>::
-main game.tscn::PackedScene::2704893468646948744::1740557406::0::1::::<><>::
-menu.tscn::PackedScene::8341535868695658283::1740556878::0::1::::<><>::
-README.md::TextFile::-1::1740557584::0::1::::<><>::
+::res://::1741167405
+boat.gd::GDScript::-1::1741160124::0::1::::<>CharacterBody2D<>::
+Box_Orange_Square.png::CompressedTexture2D::714751842565154365::1741162062::1741162062::1::::<><>::
+crosshair026.png::CompressedTexture2D::3184771159971328245::1741167405::1741167405::1::::<><>::
+icon.svg::CompressedTexture2D::5391476652708150876::1741160124::1741160291::1::::<><>::
+main game.tscn::PackedScene::2704893468646948744::1741160124::0::1::::<><>::res://boat.gd
+menu.tscn::PackedScene::8341535868695658283::1741160124::0::1::::<><>::
+Purple.png::CompressedTexture2D::1840420711039052743::1741164712::1741164712::1::::<><>::
+README.md::TextFile::-1::1741160124::0::1::::<><>::
+fishing_minigame.tscn::PackedScene::324720947254930726::1741164354::0::1::::<><>::uid://kgh4glmhisph::::res://Box_Orange_Square.png<>uid://c10r1kjr1577j::::res://SlimSlider_Background.png<>uid://b87nxympan1o5::::res://SlimSlider_Base.png
+Fish.tscn::PackedScene::2490168514275901677::1741166918::0::1::::<><>::res://fish.gd<>uid://1hrpwatg5nr8::::res://Purple.png
+fish.gd::GDScript::-1::1741166918::0::1::::<>CharacterBody2D<>::
+target.tscn::PackedScene::7021037822242580019::1741167184::0::1::::<><>::
+SlimSlider_Background.png::CompressedTexture2D::6650439905290201017::1741162529::1741162529::1::::<><>::
+SlimSlider_Base.png::CompressedTexture2D::4769544285823988522::1741163026::1741163026::1::::<><>::

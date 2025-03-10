@@ -1,3 +1,7 @@
-res://main game.tscn
-res://boat.gd
-res://menu.tscn
+res://Fish.tscn
+res://fish.gd
+res://target.tscn
+res://sprite_2d.gd
+res://target.gd
+res://fishing_minigame.tscn
+res://fishing_game.gd
