@@ -12,3 +12,10 @@ CanvasLayer
 Camera2D
 CollisionPolygon2D
 Polygon2D
+RigidBody2D
+DampedSpringJoint2D
+Sprite2D
+Camera2D
+CollisionPolygon2D
+Polygon2D
+CharacterBody2D

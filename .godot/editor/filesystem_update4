@@ -5,3 +5,8 @@ res://sprite_2d.gd
 res://target.gd
 res://fishing_minigame.tscn
 res://fishing_game.gd
+res://menu.tscn
+res://main game.tscn
+res://boat.gd
+res://crates.tscn
+res://crate.tscn

@@ -1,79 +1,103 @@
 extends CharacterBody2D
 
-# Tugboat properties
-@export var max_speed: float = 200.0
-@export var acceleration: float = 50.0
-@export var turn_speed: float = 1.5      # Slower turning for realism
-@export var water_resistance: float = 0.95  # Slows down over time
-@export var glide_factor: float = 0.98      # Glide effect when not accelerating
+@export var max_speed: float = 150.0
+@export var acceleration: float = 30.0
+@export var deceleration: float = 10.0
+@export var turn_speed: float = 3.0
+@export var bobbing_amount: float = 30.0  
+@export var bobbing_speed: float = 1.5  
+@export var bobbing_randomness: float = 1.0  
+@export var crate_scene: PackedScene  # Set in Inspector
+@export var max_crates: int = 5  # Maximum number of crates to create
 
-# Cartoony effects
-@export var bob_amplitude: float = 5.0     # How much the boat bobs up and down
-@export var bob_speed: float = 2.0         # Speed of bobbing
-@export var splash_effect: PackedScene    # Splash particle effect
+# Crate weight parameters
+@export var crate_drag: float = 0.1  # Drag per crate
+@export var crate_turn_resistance: float = 0.2  # Resistance to turning per crate
 
 # Internal variables
-var current_bob: float = 0.0
+var current_bobbing_time: float = 0.0
+var crates: Array = []
+
+@onready var noise = FastNoiseLite.new()
 
 func _ready():
-	# Start bobbing animation
-	current_bob = randf() * 2 * PI  # Randomize bobbing phase
+	noise.seed = randi()
+	noise.frequency = 0.3  
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	handle_input(delta)
-	apply_water_resistance()
-	apply_glide()
-	apply_bobbing(delta)
+	apply_movement(delta)
 	move_and_slide()
+	update_crates_position(delta)
 
-	# Play splash effect if moving fast enough
-	if velocity.length() > 50:
-		spawn_splash()
+func handle_input(delta: float) -> void:
+	var input_direction: Vector2 = Vector2.ZERO
 
-func handle_input(delta):
-	# Rotation (steering)
-	if Input.is_action_pressed("ui_left"):
-		rotation -= turn_speed * delta
-	if Input.is_action_pressed("ui_right"):
-		rotation += turn_speed * delta
-
-	# Forward and backward movement
-	var input_direction = 0.0
 	if Input.is_action_pressed("ui_up"):
-		input_direction = 1.0
+		input_direction.y -= 1
 	if Input.is_action_pressed("ui_down"):
-		input_direction = -0.5  # Reverse should be slower
+		input_direction.y += 1
+	if Input.is_action_pressed("ui_left"):
+		input_direction.x -= 1
+	if Input.is_action_pressed("ui_right"):
+		input_direction.x += 1
+	if Input.is_action_pressed("ui_accept") and crates.size() < max_crates:
+		add_crate()
 
-	# Apply acceleration in the direction the boat is facing
-	if input_direction != 0:
-		velocity += Vector2.RIGHT.rotated(rotation) * acceleration * input_direction * delta
-		velocity = velocity.limit_length(max_speed)
+	if input_direction.length() > 0:
+		input_direction = input_direction.normalized()
+		# Apply drag based on the number of crates
+		var effective_acceleration = acceleration / (1 + crates.size() * crate_drag)
+		velocity = velocity.move_toward(input_direction * (max_speed-(crates.size()*10)), effective_acceleration * delta)
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
 
-func apply_water_resistance():
-	# Gradually slow down the boat due to water resistance
-	velocity *= water_resistance
 
-func apply_glide():
-	# Glide effect when not accelerating
-	if Input.is_action_just_released("ui_up") or Input.is_action_just_released("ui_down"):
-		velocity *= glide_factor
+	if velocity.length() > 0:
+		# Apply turn resistance based on the number of crates
+		var effective_turn_speed = turn_speed / (1 + crates.size() * crate_turn_resistance)
+		var target_angle = velocity.angle()
+		rotation = lerp_angle(rotation, target_angle, effective_turn_speed * delta)
+	else:
+		apply_bobbing(delta)
 
-func apply_bobbing(delta):
-	# Cartoony bobbing effect
-	current_bob += bob_speed * delta
-	var bob_offset = sin(current_bob) * bob_amplitude
-	position.y += bob_offset * delta
+func apply_movement(delta: float) -> void:
+	position += velocity * delta
+	print(velocity,crates.size())
 
-func spawn_splash():
-	# Spawn a splash effect at the sides of the boat
-	if splash_effect:
-		var left_splash = splash_effect.instantiate()
-		var right_splash = splash_effect.instantiate()
+func apply_bobbing(delta: float) -> void:
+	current_bobbing_time += bobbing_speed * delta
+	var noise_x = noise.get_noise_1d(current_bobbing_time) * bobbing_randomness
+	var noise_y = noise.get_noise_1d(current_bobbing_time + 1000) * bobbing_randomness
+	position.x += noise_x * bobbing_amount * delta
+	position.y += noise_y * bobbing_amount * delta
 
-		# Position splashes at the sides of the boat (adjusted for isometric view)
-		left_splash.position = position + Vector2(-20, 10).rotated(rotation)
-		right_splash.position = position + Vector2(20, 10).rotated(rotation)
+func update_crates_position(delta: float) -> void:
+	for i in range(crates.size()):
+		var crate = crates[i]
+		if crate:
+			# Determine the position of each crate relative to the boat or the previous crate
+			var target_position: Vector2
+			if i == 0:
+				target_position = position - Vector2(cos(rotation), sin(rotation)) * 40  # First crate follows the boat
+			else:
+				target_position = crates[i - 1].position - Vector2(cos(crates[i - 1].rotation), sin(crates[i - 1].rotation)) * 40  # Subsequent crates follow the previous crate
 
-		# Add splashes to the scene
-		get_parent().add_child(left_splash)
-		get_parent().add_child(right_splash)
+			# Simulate inertia by smoothing the crate's movement
+			crate.position = crate.position.lerp(target_position, 0.1)
+			crate.rotation = rotation  # Follow the rotation of the boat
+
+func add_crate():
+	if crate_scene:
+		var crate = crate_scene.instantiate()
+		get_parent().add_child(crate)
+
+		# Position crate behind the last one or at the boat if it's the first crate
+		var attach_point: Vector2
+		if crates.size() > 0:
+			attach_point = crates[-1].position - Vector2(cos(crates[-1].rotation), sin(crates[-1].rotation)) * 40  # Behind last crate
+		else:
+			attach_point = position - Vector2(cos(rotation), sin(rotation)) * 40  # Behind the boat
+
+		crate.position = attach_point
+		crates.append(crate)
