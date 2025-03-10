@@ -1,3 +1,5 @@
+res://menu.tscn
 res://main game.tscn
 res://boat.gd
-res://menu.tscn
+res://crates.tscn
+res://crate.tscn

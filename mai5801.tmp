@@ -18,7 +18,5 @@ polygon = PackedVector2Array(0, -16, 4, -15, 7, -11, 8, -6, 8, 16, -8, 16, -8, -
 rotation = 1.57079
 polygon = PackedVector2Array(0, -16, 4, -15, 7, -11, 8, -6, 8, 16, -8, 16, -8, -6, -7, -11, -4, -15)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.86, 1.86)
-position_smoothing_enabled = true
-position_smoothing_speed = 2.0
