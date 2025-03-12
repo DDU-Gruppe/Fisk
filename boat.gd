@@ -22,7 +22,7 @@ var crates: Array = []
 
 func _ready():
 	noise.seed = randi()
-	noise.frequency = 0.3  
+	noise.frequency = 0.3
 
 func _physics_process(delta: float) -> void:
 	handle_input(delta)
@@ -101,3 +101,10 @@ func add_crate():
 
 		crate.position = attach_point
 		crates.append(crate)
+
+func _input(event):
+	if event.is_action_pressed("toggle_boat_scene"):
+		get_tree().change_scene_to_file("res://OnBoat.tscn")
+
+func _process(delta):
+	print(get_tree().current_scene.name)

@@ -1,8 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1741162234
-boat.gd::GDScript::-1::1741162216::0::1::::<>CharacterBody2D<>::
-icon.svg::CompressedTexture2D::5391476652708150876::1740556862::1740558438::1::::<><>::
-main game.tscn::PackedScene::2704893468646948744::1741162216::0::1::::<><>::res://boat.gd
-menu.tscn::PackedScene::8341535868695658283::1741162127::0::1::::<><>::
-README.md::TextFile::-1::1740557584::0::1::::<><>::
-crates.tscn::PackedScene::4801285795988932259::1741162234::0::1::::<><>::
+::res://::1741765337
+boat.gd::GDScript::-1::1741687456::0::1::::<>CharacterBody2D<>::
+crate.tscn::PackedScene::4281725680978233577::1741687496::0::1::::<><>::
+icon.svg::CompressedTexture2D::5391476652708150876::1741605711::1741605883::1::::<><>::
+lilbuddyman.gd::GDScript::-1::1741607048::0::1::::<>CharacterBody2D<>::
+main game.tscn::PackedScene::2704893468646948744::1741687496::0::1::::<><>::res://boat.gd<>uid://b2adnqiauk7vp::::res://crate.tscn
+menu.tscn::PackedScene::8341535868695658283::1741687496::0::1::::<><>::
+Onboat.gd::GDScript::-1::1741687477::0::1::::<>Node2D<>::
+OnBoat.tscn::PackedScene::1615789626366227400::1741687496::0::1::::<><>::res://Onboat.gd<>res://lilbuddyman.gd
+README.md::TextFile::-1::1741605711::0::1::::<><>::
