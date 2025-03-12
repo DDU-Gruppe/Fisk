@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 Camera2D
+=======
+Line2D
+>>>>>>> Stashed changes
 CollisionShape2D
 Sprite2D
 Area2D

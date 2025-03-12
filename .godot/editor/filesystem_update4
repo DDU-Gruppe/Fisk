@@ -8,4 +8,11 @@ res://fishing_game.gd
 res://menu.tscn
 res://main game.tscn
 res://crate.tscn
+<<<<<<< Updated upstream
 res://OnBoat.tscn
+=======
+res://Scenes/main game.tscn
+res://Scenes/menu.tscn
+res://Scenes/crate.tscn
+res://Scripts/boat.gd
+>>>>>>> Stashed changes

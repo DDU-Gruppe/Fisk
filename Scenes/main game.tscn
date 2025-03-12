@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://besjg2qgh1bd5"]
 
-[ext_resource type="Script" path="res://boat.gd" id="1_u2yd8"]
-[ext_resource type="PackedScene" uid="uid://b2adnqiauk7vp" path="res://crate.tscn" id="2_3856p"]
+[ext_resource type="Script" path="res://Scripts/boat.gd" id="1_u2yd8"]
+[ext_resource type="PackedScene" uid="uid://b2adnqiauk7vp" path="res://Scenes/crate.tscn" id="2_3856p"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,6 +9,8 @@
 motion_mode = 1
 script = ExtResource("1_u2yd8")
 crate_scene = ExtResource("2_3856p")
+
+[node name="RopeLine" type="Line2D" parent="CharacterBody2D"]
 
 [node name="Polygon2D" type="Polygon2D" parent="CharacterBody2D"]
 rotation = 1.57079

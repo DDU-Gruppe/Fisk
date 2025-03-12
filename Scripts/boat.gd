@@ -17,6 +17,10 @@ extends CharacterBody2D
 # Internal variables
 var current_bobbing_time: float = 0.0
 var crates: Array = []
+var ropes: Array = []  # Array to hold all rope instances
+var can_add_crate: bool = true  # Flag to control crate addition
+
+@export var crate_distance: float = 20.0  # Fixed distance between crates
 
 @onready var noise = FastNoiseLite.new()
 
@@ -41,17 +45,17 @@ func handle_input(delta: float) -> void:
 		input_direction.x -= 1
 	if Input.is_action_pressed("ui_right"):
 		input_direction.x += 1
-	if Input.is_action_pressed("ui_accept") and crates.size() < max_crates:
+	if Input.is_action_just_pressed("ui_accept") and crates.size() < max_crates and can_add_crate:
 		add_crate()
+		can_add_crate = false  # Prevent adding another crate until the flag is reset
 
 	if input_direction.length() > 0:
 		input_direction = input_direction.normalized()
 		# Apply drag based on the number of crates
 		var effective_acceleration = acceleration / (1 + crates.size() * crate_drag)
-		velocity = velocity.move_toward(input_direction * (max_speed-(crates.size()*10)), effective_acceleration * delta)
+		velocity = velocity.move_toward(input_direction * (max_speed - (crates.size() * 10)), effective_acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
-
 
 	if velocity.length() > 0:
 		# Apply turn resistance based on the number of crates
@@ -63,7 +67,6 @@ func handle_input(delta: float) -> void:
 
 func apply_movement(delta: float) -> void:
 	position += velocity * delta
-	print(velocity,crates.size())
 
 func apply_bobbing(delta: float) -> void:
 	current_bobbing_time += bobbing_speed * delta
@@ -73,19 +76,54 @@ func apply_bobbing(delta: float) -> void:
 	position.y += noise_y * bobbing_amount * delta
 
 func update_crates_position(delta: float) -> void:
+	# Update crate positions
 	for i in range(crates.size()):
 		var crate = crates[i]
 		if crate:
 			# Determine the position of each crate relative to the boat or the previous crate
 			var target_position: Vector2
 			if i == 0:
-				target_position = position - Vector2(cos(rotation), sin(rotation)) * 40  # First crate follows the boat
+				# First crate follows the boat
+				target_position = global_position - Vector2(cos(rotation), sin(rotation)) * crate_distance
 			else:
-				target_position = crates[i - 1].position - Vector2(cos(crates[i - 1].rotation), sin(crates[i - 1].rotation)) * 40  # Subsequent crates follow the previous crate
+				# Subsequent crates follow the previous crate
+				target_position = crates[i - 1].global_position - Vector2(cos(crates[i - 1].rotation), sin(crates[i - 1].rotation)) * crate_distance
 
-			# Simulate inertia by smoothing the crate's movement
-			crate.position = crate.position.lerp(target_position, 0.1)
-			crate.rotation = rotation  # Follow the rotation of the boat
+			# Ensure the crate maintains a fixed distance
+			var direction = (target_position - crate.global_position).normalized()
+			crate.global_position = target_position - direction * crate_distance
+
+			# Follow the rotation of the boat
+			crate.rotation = rotation
+
+	# Update ropes
+	update_ropes()
+
+func update_ropes():
+	# Clear existing ropes
+	for rope in ropes:
+		rope.queue_free()
+	ropes.clear()
+
+	# Create a new rope for each connection
+	var previous_point = global_position
+	for i in range(crates.size()):
+		var crate = crates[i]
+		if crate:
+			# Create a new rope
+			var rope = Line2D.new()
+			rope.width = 2
+			rope.default_color = Color(0.6, 0.4, 0.2)  # Brownish color for rope
+			rope.points = [previous_point, crate.global_position]
+
+			# Add the rope to the scene **before** the boat and crates
+			get_parent().add_child(rope)
+			get_parent().move_child(rope, 0)  # Move rope to the bottom of the scene tree (rendered first)
+
+			ropes.append(rope)
+
+			# Update the previous point
+			previous_point = crate.global_position
 
 func add_crate():
 	if crate_scene:
@@ -95,16 +133,25 @@ func add_crate():
 		# Position crate behind the last one or at the boat if it's the first crate
 		var attach_point: Vector2
 		if crates.size() > 0:
-			attach_point = crates[-1].position - Vector2(cos(crates[-1].rotation), sin(crates[-1].rotation)) * 40  # Behind last crate
+			attach_point = crates[-1].global_position - Vector2(cos(crates[-1].rotation), sin(crates[-1].rotation)) * crate_distance  # Behind last crate
 		else:
-			attach_point = position - Vector2(cos(rotation), sin(rotation)) * 40  # Behind the boat
+			attach_point = global_position - Vector2(cos(rotation), sin(rotation)) * crate_distance  # Behind the boat
 
-		crate.position = attach_point
+		crate.global_position = attach_point
 		crates.append(crate)
 
+<<<<<<< Updated upstream:boat.gd
 func _input(event):
 	if event.is_action_pressed("toggle_boat_scene"):
 		get_tree().change_scene_to_file("res://OnBoat.tscn")
 
 func _process(delta):
 	print(get_tree().current_scene.name)
+=======
+		# Update ropes when a new crate is added
+		update_ropes()
+
+		# Reset the flag after a short delay to allow adding another crate
+		await get_tree().create_timer(0.5).timeout  # 0.5-second cooldown
+		can_add_crate = true
+>>>>>>> Stashed changes:Scripts/boat.gd
