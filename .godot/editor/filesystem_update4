@@ -1,7 +1,3 @@
-res://menu.tscn
-res://main game.tscn
-res://crate.tscn
-res://Scenes/main game.tscn
 res://Scenes/menu.tscn
+res://Scenes/main game.tscn
 res://Scenes/crate.tscn
-res://Scripts/boat.gd

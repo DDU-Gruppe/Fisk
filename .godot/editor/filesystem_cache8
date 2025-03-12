@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1741766726
+::res://::1741766858
 icon.svg::CompressedTexture2D::5391476652708150876::1740556862::1740558438::1::::<><>::
 README.md::TextFile::-1::1740557584::0::1::::<><>::
 ::res://Assets/::1741766726
@@ -8,12 +8,12 @@ crosshair026.png::CompressedTexture2D::3184771159971328245::1741766463::17417667
 Purple.png::CompressedTexture2D::1840420711039052743::1741766463::1741766721::1::::<><>::
 SlimSlider_Background.png::CompressedTexture2D::6650439905290201017::1741766463::1741766723::1::::<><>::
 SlimSlider_Base.png::CompressedTexture2D::4769544285823988522::1741766463::1741766726::1::::<><>::
-::res://Scenes/::1741766726
-crate.tscn::PackedScene::4281725680978233577::1741766658::0::1::::<><>::
+::res://Scenes/::1741766864
+crate.tscn::PackedScene::4281725680978233577::1741766864::0::1::::<><>::
 Fish.tscn::PackedScene::2490168514275901677::1741766721::0::1::::<><>::res://fish.gd<>uid://1hrpwatg5nr8::::res://Assets/Purple.png
 fishing_minigame.tscn::PackedScene::324720947254930726::1741766726::0::1::::<><>::uid://kgh4glmhisph::::res://Assets/Box_Orange_Square.png<>res://fishing_game.gd<>uid://c10r1kjr1577j::::res://Assets/SlimSlider_Background.png<>uid://b87nxympan1o5::::res://Assets/SlimSlider_Base.png<>uid://bbqiygvgwyl6d::::res://Scenes/Fish.tscn<>uid://c7bbp5ax30t1l::::res://Scenes/target.tscn
-main game.tscn::PackedScene::2704893468646948744::1741766658::0::1::::<><>::res://Scripts/boat.gd<>uid://b2adnqiauk7vp::::res://Scenes/crate.tscn
-menu.tscn::PackedScene::8341535868695658283::1741766657::0::1::::<><>::
+main game.tscn::PackedScene::2704893468646948744::1741766863::0::1::::<><>::res://Scripts/boat.gd<>uid://b2adnqiauk7vp::::res://Scenes/crate.tscn
+menu.tscn::PackedScene::8341535868695658283::1741766863::0::1::::<><>::
 target.tscn::PackedScene::7021037822242580019::1741766719::0::1::::<><>::res://target.gd<>uid://blmyylma2lt6d::::res://Assets/crosshair026.png<>res://sprite_2d.gd
 ::res://Scripts/::1741766711
 boat.gd::GDScript::-1::1741766549::0::1::::<>CharacterBody2D<>::
