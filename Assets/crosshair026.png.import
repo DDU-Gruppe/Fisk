@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kgh4glmhisph"
-path="res://.godot/imported/Box_Orange_Square.png-ef79cb126e2818531793767b35510572.ctex"
+uid="uid://blmyylma2lt6d"
+path="res://.godot/imported/crosshair026.png-8b68281ad17316d54eb8714e1e2bb3c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Box_Orange_Square.png"
-dest_files=["res://.godot/imported/Box_Orange_Square.png-ef79cb126e2818531793767b35510572.ctex"]
+source_file="res://Assets/crosshair026.png"
+dest_files=["res://.godot/imported/crosshair026.png-8b68281ad17316d54eb8714e1e2bb3c3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1hrpwatg5nr8"
-path="res://.godot/imported/Purple.png-3b93a7f8b5ec59ba9c22152d9a19d80d.ctex"
+uid="uid://c10r1kjr1577j"
+path="res://.godot/imported/SlimSlider_Background.png-4e5e9a41ae64fea81fd482bf6a49d088.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Purple.png"
-dest_files=["res://.godot/imported/Purple.png-3b93a7f8b5ec59ba9c22152d9a19d80d.ctex"]
+source_file="res://Assets/SlimSlider_Background.png"
+dest_files=["res://.godot/imported/SlimSlider_Background.png-4e5e9a41ae64fea81fd482bf6a49d088.ctex"]
 
 [params]
 

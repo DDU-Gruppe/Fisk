@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7bbp5ax30t1l"]
 
 [ext_resource type="Script" path="res://target.gd" id="1_ilgc6"]
-[ext_resource type="Texture2D" uid="uid://blmyylma2lt6d" path="res://crosshair026.png" id="1_w1c45"]
+[ext_resource type="Texture2D" uid="uid://blmyylma2lt6d" path="res://Assets/crosshair026.png" id="1_w1c45"]
 [ext_resource type="Script" path="res://sprite_2d.gd" id="2_ies2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1um80"]

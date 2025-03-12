@@ -26,7 +26,7 @@ var can_add_crate: bool = true  # Flag to control crate addition
 
 func _ready():
 	noise.seed = randi()
-	noise.frequency = 0.3
+	noise.frequency = 0.3  
 
 func _physics_process(delta: float) -> void:
 	handle_input(delta)
@@ -140,18 +140,9 @@ func add_crate():
 		crate.global_position = attach_point
 		crates.append(crate)
 
-<<<<<<< Updated upstream:boat.gd
-func _input(event):
-	if event.is_action_pressed("toggle_boat_scene"):
-		get_tree().change_scene_to_file("res://OnBoat.tscn")
-
-func _process(delta):
-	print(get_tree().current_scene.name)
-=======
 		# Update ropes when a new crate is added
 		update_ropes()
 
 		# Reset the flag after a short delay to allow adding another crate
 		await get_tree().create_timer(0.5).timeout  # 0.5-second cooldown
 		can_add_crate = true
->>>>>>> Stashed changes:Scripts/boat.gd
