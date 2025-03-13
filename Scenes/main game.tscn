@@ -1,7 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://besjg2qgh1bd5"]
+[gd_scene load_steps=11 format=3 uid="uid://besjg2qgh1bd5"]
 
+[ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_hy2ld"]
+[ext_resource type="Material" uid="uid://cgjocunkt7lim" path="res://Assets/Tiles/Water/WaterMaterial.tres" id="1_ke2rv"]
 [ext_resource type="Script" path="res://Scripts/boat.gd" id="1_u2yd8"]
 [ext_resource type="PackedScene" uid="uid://b2adnqiauk7vp" path="res://Scenes/crate.tscn" id="2_3856p"]
+[ext_resource type="Texture2D" uid="uid://2lul8k14hwv5" path="res://Assets/Shaders/CircleBlur64x64.png" id="4_aagcd"]
+[ext_resource type="Texture2D" uid="uid://bkmtl116unb3p" path="res://Assets/Shaders/WaterTrailGradient.png" id="4_oga1k"]
+[ext_resource type="Script" path="res://Scripts/Trails.gd" id="5_75a0m"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yv0sr"]
+viewport_path = NodePath("CharacterBody2D/watertrail/SubViewport")
+
+[sub_resource type="Curve" id="Curve_hm2kv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.538462), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_7pa6c"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,6 +24,37 @@
 motion_mode = 1
 script = ExtResource("1_u2yd8")
 crate_scene = ExtResource("2_3856p")
+
+[node name="watertrail" type="Node2D" parent="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/watertrail"]
+material = ExtResource("1_hy2ld")
+texture = SubResource("ViewportTexture_yv0sr")
+
+[node name="SubViewport" type="SubViewport" parent="CharacterBody2D/watertrail"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="Line2D" type="Line2D" parent="CharacterBody2D/watertrail/SubViewport" node_paths=PackedStringArray("parent")]
+position = Vector2(128, 128)
+width = 32.0
+width_curve = SubResource("Curve_hm2kv")
+gradient = SubResource("Gradient_7pa6c")
+texture = ExtResource("4_oga1k")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("5_75a0m")
+MAX_LENGTH = 20
+parent = NodePath("../../..")
+largest_tip_width = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/watertrail/SubViewport"]
+position = Vector2(128, 128)
+scale = Vector2(0.855, 0.425)
+texture = ExtResource("4_aagcd")
 
 [node name="RopeLine" type="Line2D" parent="CharacterBody2D"]
 
@@ -24,3 +70,12 @@ polygon = PackedVector2Array(0, -16, 4, -15, 7, -11, 8, -6, 8, 16, -8, 16, -8, -
 zoom = Vector2(1.86, 1.86)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D/Camera2D"]
+z_index = -1
+material = ExtResource("1_ke2rv")
+offset_left = -1042.0
+offset_top = -930.0
+offset_right = 1133.0
+offset_bottom = 961.0
+color = Color(0, 0.356863, 1, 1)

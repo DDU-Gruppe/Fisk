@@ -1,4 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2adnqiauk7vp"]
+[gd_scene load_steps=10 format=3 uid="uid://b2adnqiauk7vp"]
+
+[ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_2fiv1"]
+[ext_resource type="Texture2D" uid="uid://bkmtl116unb3p" path="res://Assets/Shaders/WaterTrailGradient.png" id="2_u1ag7"]
+[ext_resource type="Script" path="res://Scripts/Trails.gd" id="3_4vmol"]
+[ext_resource type="Texture2D" uid="uid://2lul8k14hwv5" path="res://Assets/Shaders/CircleBlur64x64.png" id="4_pdg6p"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_g32r7"]
+viewport_path = NodePath("watertrail/SubViewport")
+
+[sub_resource type="Curve" id="Curve_qebnx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.538462), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_6poco"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qhcy5"]
 size = Vector2(16, 16)
@@ -8,6 +23,34 @@ size = Vector2(16, 16)
 
 [node name="RigidBody2D" type="RigidBody2D"]
 gravity_scale = 0.0
+
+[node name="watertrail" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="watertrail"]
+material = ExtResource("1_2fiv1")
+texture = SubResource("ViewportTexture_g32r7")
+
+[node name="SubViewport" type="SubViewport" parent="watertrail"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="Line2D" type="Line2D" parent="watertrail/SubViewport" node_paths=PackedStringArray("parent")]
+width = 32.0
+width_curve = SubResource("Curve_qebnx")
+gradient = SubResource("Gradient_6poco")
+texture = ExtResource("2_u1ag7")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("3_4vmol")
+parent = NodePath("../../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="watertrail/SubViewport"]
+position = Vector2(128, 128)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("4_pdg6p")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_qhcy5")

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var acceleration: float = 30.0
 @export var deceleration: float = 10.0
 @export var turn_speed: float = 3.0
-@export var bobbing_amount: float = 30.0  
+@export var bobbing_amount: float = 0.0  
 @export var bobbing_speed: float = 1.5  
 @export var bobbing_randomness: float = 1.0  
 @export var crate_scene: PackedScene  # Set in Inspector
@@ -20,7 +20,7 @@ var crates: Array = []
 var ropes: Array = []  # Array to hold all rope instances
 var can_add_crate: bool = true  # Flag to control crate addition
 
-@export var crate_distance: float = 20.0  # Fixed distance between crates
+@export var crate_distance: float = 40.0  # Fixed distance between crates
 
 @onready var noise = FastNoiseLite.new()
 
@@ -89,9 +89,8 @@ func update_crates_position(delta: float) -> void:
 				# Subsequent crates follow the previous crate
 				target_position = crates[i - 1].global_position - Vector2(cos(crates[i - 1].rotation), sin(crates[i - 1].rotation)) * crate_distance
 
-			# Ensure the crate maintains a fixed distance
-			var direction = (target_position - crate.global_position).normalized()
-			crate.global_position = target_position - direction * crate_distance
+			# Smoothly move the crate towards the target position
+			crate.global_position = crate.global_position.lerp(target_position, 0.2)  # Increased lerp weight for smoother movement
 
 			# Follow the rotation of the boat
 			crate.rotation = rotation
