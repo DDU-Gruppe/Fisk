@@ -52,8 +52,8 @@ parent = NodePath("../../..")
 largest_tip_width = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/watertrail/SubViewport"]
-position = Vector2(128, 128)
-scale = Vector2(0.855, 0.425)
+position = Vector2(125.615, 128)
+scale = Vector2(1.01, 0.502)
 texture = ExtResource("4_aagcd")
 
 [node name="RopeLine" type="Line2D" parent="CharacterBody2D"]

@@ -36,6 +36,7 @@ transparent_bg = true
 size = Vector2i(256, 256)
 
 [node name="Line2D" type="Line2D" parent="watertrail/SubViewport" node_paths=PackedStringArray("parent")]
+position = Vector2(128, 128)
 width = 32.0
 width_curve = SubResource("Curve_qebnx")
 gradient = SubResource("Gradient_6poco")
@@ -45,6 +46,7 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 script = ExtResource("3_4vmol")
+MAX_LENGTH = 30
 parent = NodePath("../../..")
 
 [node name="Sprite2D" type="Sprite2D" parent="watertrail/SubViewport"]
