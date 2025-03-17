@@ -15,3 +15,6 @@ res://Scripts/boat.gd
 res://Scripts/Trails.gd
 res://Scripts/Onboat.gd
 res://Scenes/OnMain.gd
+res://Scripts/lilbuddyman.gd
+res://Scripts/target.gd
+res://Scripts/fish.gd
