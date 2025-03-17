@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dkqnuyr680dxw"]
+
+[node name="Trail" type="Line2D"]
