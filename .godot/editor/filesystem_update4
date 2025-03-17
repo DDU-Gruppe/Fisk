@@ -1,9 +1,6 @@
-res://Scenes/menu.tscn
+res://Scenes/crate.tscn
 res://Assets/Shaders/RippleShader.tres
 res://Assets/Shaders/WaterTrailSpriteMaterial.tres
 res://Assets/Tiles/Water/WaterShader.tres
 res://Assets/Tiles/Water/WaterMaterial.tres
 res://Assets/Shaders/StaticRippleTestShader.tres
-res://Scenes/main game.tscn
-res://Scenes/crate.tscn
-res://Scripts/Trails.gd

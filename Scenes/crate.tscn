@@ -51,7 +51,7 @@ parent = NodePath("../../..")
 
 [node name="Sprite2D" type="Sprite2D" parent="watertrail/SubViewport"]
 position = Vector2(128, 128)
-scale = Vector2(0.48, 0.48)
+scale = Vector2(0.53, 0.53)
 texture = ExtResource("4_pdg6p")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
