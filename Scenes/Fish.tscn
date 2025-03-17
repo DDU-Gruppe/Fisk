@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://bbqiygvgwyl6d"]
 
-[ext_resource type="Script" path="res://fish.gd" id="1_yqnjf"]
+[ext_resource type="Script" path="res://Scripts/fish.gd" id="1_6r42q"]
 [ext_resource type="Texture2D" uid="uid://1hrpwatg5nr8" path="res://Assets/Purple.png" id="2_u57ii"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0de1u"]
@@ -127,12 +127,14 @@ animations = [{
 radius = 15.0
 
 [node name="Fish" type="CharacterBody2D"]
-script = ExtResource("1_yqnjf")
+script = ExtResource("1_6r42q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_gu5ye")
 animation = &"move"
+frame_progress = 0.469877
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ayu6w")
