@@ -1,8 +1,9 @@
 extends CharacterBody2D
+var moving = true
 
 @export var speed := 70
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Get input from arrow keys (or WASD) mapped to ui_up, ui_down, ui_left, ui_right
 	var input_vector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	# Normalize to avoid faster diagonal movement

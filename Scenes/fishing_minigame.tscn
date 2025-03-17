@@ -80,12 +80,13 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_1qhpd")
 
-[node name="Fish" parent="." node_paths=PackedStringArray("aquaContainer") instance=ExtResource("4_1nckm")]
-position = Vector2(575, 337)
-aquaContainer = NodePath("../FishingGame/PanelContainer/MarginContainer/VBoxContainer/AquaContainer")
+[node name="Fish" parent="FishingGame" node_paths=PackedStringArray("aquaContainer") instance=ExtResource("4_1nckm")]
+position = Vector2(149, 163)
+aquaContainer = NodePath("../PanelContainer/MarginContainer/VBoxContainer/AquaContainer")
 
-[node name="Target" parent="." instance=ExtResource("6_0kpjg")]
-position = Vector2(575, 337)
+[node name="Target" parent="FishingGame" node_paths=PackedStringArray("aquaContainer") instance=ExtResource("6_0kpjg")]
+position = Vector2(149, 163)
+aquaContainer = NodePath("../PanelContainer/MarginContainer/VBoxContainer/AquaContainer")
 
-[connection signal="target_entered" from="Target" to="FishingGame" method="_on_target_target_entered"]
-[connection signal="target_exited" from="Target" to="FishingGame" method="_on_target_target_exited"]
+[connection signal="target_entered" from="FishingGame/Target" to="FishingGame" method="_on_target_target_entered"]
+[connection signal="target_exited" from="FishingGame/Target" to="FishingGame" method="_on_target_target_exited"]
