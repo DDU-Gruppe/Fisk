@@ -1,20 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://xax2338lav6g"]
+[gd_scene load_steps=5 format=3 uid="uid://xax2338lav6g"]
 
 [ext_resource type="Script" path="res://Onboat.gd" id="1_b4axm"]
 [ext_resource type="Script" path="res://lilbuddyman.gd" id="2_m2gwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lej23"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sinoq"]
+load_path = "res://.godot/imported/lilbuddyman_placholder.png-b77660fdeb28c98e9f19f65e4a06c842.ctex"
+
 [node name="boat" type="Node2D"]
 script = ExtResource("1_b4axm")
-
-[node name="boatSprite" type="Sprite2D" parent="."]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("2_m2gwl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+visible = false
 shape = SubResource("RectangleShape2D_lej23")
 debug_color = Color(1, 1, 1, 1)
 
+[node name="boatSprite" type="Sprite2D" parent="CharacterBody2D"]
+texture = SubResource("CompressedTexture2D_sinoq")
+
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(7.23, 7.23)
