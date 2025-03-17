@@ -15,7 +15,6 @@ script = ExtResource("1_r5u17")
 script = ExtResource("2_wa5rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-visible = false
 shape = SubResource("RectangleShape2D_lej23")
 debug_color = Color(1, 1, 1, 1)
 

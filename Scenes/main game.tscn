@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://besjg2qgh1bd5"]
+[gd_scene load_steps=12 format=3 uid="uid://besjg2qgh1bd5"]
 
+[ext_resource type="Script" path="res://Scenes/OnMain.gd" id="1_atuaf"]
 [ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_hy2ld"]
 [ext_resource type="Material" uid="uid://cgjocunkt7lim" path="res://Assets/Tiles/Water/WaterMaterial.tres" id="1_ke2rv"]
 [ext_resource type="Script" path="res://Scripts/boat.gd" id="1_u2yd8"]
@@ -19,6 +20,7 @@ point_count = 2
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_atuaf")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 motion_mode = 1

@@ -10,4 +10,4 @@ func _process(delta):
 	
 func _input(event):
 	if event.is_action_pressed("toggle_boat_scene"):
-		get_tree().change_scene_to_file("res://Scenes/main game.tscn")
+		get_tree().change_scene_to_file("res://Scenes/OnBoat.tscn")
