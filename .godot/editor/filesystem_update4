@@ -13,3 +13,8 @@ res://Scenes/OnBoat.tscn
 res://Scripts/fishing_game.gd
 res://Scripts/boat.gd
 res://Scripts/Trails.gd
+res://menu.tscn
+res://main game.tscn
+res://crate.tscn
+res://fishing_minigame.tscn
+res://OnBoat.tscn
