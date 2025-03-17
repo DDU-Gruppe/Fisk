@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bkmtl116unb3p" path="res://Assets/Shaders/WaterTrailGradient.png" id="2_u1ag7"]
 [ext_resource type="Script" path="res://Scripts/Trails.gd" id="3_4vmol"]
 [ext_resource type="Texture2D" uid="uid://2lul8k14hwv5" path="res://Assets/Shaders/CircleBlur64x64.png" id="4_pdg6p"]
+[ext_resource type="Texture2D" uid="uid://byqrute5fcdwt" path="res://Assets/crate.png" id="5_yaysa"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_g32r7"]
 viewport_path = NodePath("watertrail/SubViewport")
@@ -14,9 +15,6 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_6poco"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qhcy5"]
-size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fs8c"]
 size = Vector2(16, 16)
@@ -37,7 +35,7 @@ size = Vector2i(256, 256)
 
 [node name="Line2D" type="Line2D" parent="watertrail/SubViewport" node_paths=PackedStringArray("parent")]
 position = Vector2(128, 128)
-width = 32.0
+width = 64.0
 width_curve = SubResource("Curve_qebnx")
 gradient = SubResource("Gradient_6poco")
 texture = ExtResource("2_u1ag7")
@@ -51,11 +49,13 @@ parent = NodePath("../../..")
 
 [node name="Sprite2D" type="Sprite2D" parent="watertrail/SubViewport"]
 position = Vector2(128, 128)
-scale = Vector2(0.53, 0.53)
 texture = ExtResource("4_pdg6p")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_qhcy5")
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_yaysa")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_6fs8c")

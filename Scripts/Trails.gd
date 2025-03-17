@@ -14,7 +14,7 @@ var offset: Vector2 = Vector2.ZERO
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	length = 0.0
 
 	if parent:

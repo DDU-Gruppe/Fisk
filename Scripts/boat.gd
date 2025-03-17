@@ -75,7 +75,7 @@ func apply_bobbing(delta: float) -> void:
 	position.x += noise_x * bobbing_amount * delta
 	position.y += noise_y * bobbing_amount * delta
 
-func update_crates_position(delta: float) -> void:
+func update_crates_position(_delta: float) -> void:
 	# Update crate positions
 	for i in range(crates.size()):
 		var crate = crates[i]
