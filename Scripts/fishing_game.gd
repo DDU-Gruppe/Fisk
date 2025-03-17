@@ -7,9 +7,6 @@ var catchSpeed := 0.3
 var catchingValue := 0.0
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_end"):
-		var image = get_viewport().get_texture().get_image()
-		image.save_png("res://screenshot.png")
 	if onCatch: catchingValue += catchSpeed
 	else: catchingValue -= catchSpeed
 	
@@ -29,6 +26,9 @@ func _game_end() -> void:
 	get_tree().paused = false
 	queue_free()
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		_game_end()
 
 func _on_target_target_entered() -> void:
 	onCatch = true

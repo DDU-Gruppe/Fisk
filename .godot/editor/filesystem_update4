@@ -4,17 +4,4 @@ res://Assets/Shaders/WaterTrailSpriteMaterial.tres
 res://Assets/Tiles/Water/WaterShader.tres
 res://Assets/Tiles/Water/WaterMaterial.tres
 res://Assets/Shaders/StaticRippleTestShader.tres
-res://Scenes/menu.tscn
 res://Scenes/main game.tscn
-res://Scenes/target.tscn
-res://Scenes/Fish.tscn
-res://Scenes/fishing_minigame.tscn
-res://Scenes/OnBoat.tscn
-res://Scripts/fishing_game.gd
-res://Scripts/boat.gd
-res://Scripts/Trails.gd
-res://Scripts/Onboat.gd
-res://Scenes/OnMain.gd
-res://Scripts/lilbuddyman.gd
-res://Scripts/target.gd
-res://Scripts/fish.gd
