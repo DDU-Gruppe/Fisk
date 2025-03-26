@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://besjg2qgh1bd5"]
+[gd_scene load_steps=13 format=3 uid="uid://besjg2qgh1bd5"]
 
 [ext_resource type="Script" path="res://Scenes/OnMain.gd" id="1_atuaf"]
 [ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_hy2ld"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://2lul8k14hwv5" path="res://Assets/Shaders/CircleBlur64x64.png" id="4_aagcd"]
 [ext_resource type="Texture2D" uid="uid://bkmtl116unb3p" path="res://Assets/Shaders/WaterTrailGradient.png" id="4_oga1k"]
 [ext_resource type="Script" path="res://Scripts/Trails.gd" id="5_75a0m"]
+[ext_resource type="Texture2D" uid="uid://dxx2m7aabr2u" path="res://Assets/boat.png" id="8_a4c8k"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yv0sr"]
 viewport_path = NodePath("CharacterBody2D/watertrail/SubViewport")
@@ -60,12 +61,14 @@ texture = ExtResource("4_aagcd")
 
 [node name="RopeLine" type="Line2D" parent="CharacterBody2D"]
 
-[node name="Polygon2D" type="Polygon2D" parent="CharacterBody2D"]
-rotation = 1.57079
-polygon = PackedVector2Array(0, -16, 4, -15, 7, -11, 8, -6, 8, 16, -8, 16, -8, -6, -7, -11, -4, -15)
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(-1, -2)
+texture = ExtResource("8_a4c8k")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+position = Vector2(1.75, 0.249992)
 rotation = 1.57079
+scale = Vector2(1.625, 1.80078)
 polygon = PackedVector2Array(0, -16, 4, -15, 7, -11, 8, -6, 8, 16, -8, 16, -8, -6, -7, -11, -4, -15)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
