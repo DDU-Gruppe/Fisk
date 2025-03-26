@@ -90,7 +90,7 @@ func update_crates_position(_delta: float) -> void:
 				target_position = crates[i - 1].global_position - Vector2(cos(crates[i - 1].rotation), sin(crates[i - 1].rotation)) * crate_distance
 
 			# Smoothly move the crate towards the target position
-			crate.global_position = crate.global_position.lerp(target_position, 0.2)  # Increased lerp weight for smoother movement
+			crate.global_position = crate.global_position.lerp(target_position, 0.1)  # Increased lerp weight for smoother movement
 
 			# Follow the rotation of the boat
 			crate.rotation = rotation

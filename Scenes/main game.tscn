@@ -77,10 +77,10 @@ position_smoothing_speed = 2.0
 [node name="ColorRect" type="ColorRect" parent="CharacterBody2D/Camera2D"]
 z_index = -1
 material = ExtResource("1_ke2rv")
-offset_left = -1042.0
-offset_top = -930.0
-offset_right = 1133.0
-offset_bottom = 961.0
+offset_left = -1069.0
+offset_top = -912.0
+offset_right = 1106.0
+offset_bottom = 979.0
 color = Color(0, 0.356863, 1, 1)
 
 [node name="Node" type="Node" parent="."]

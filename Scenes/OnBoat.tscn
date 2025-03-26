@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://xax2338lav6g"]
+[gd_scene load_steps=6 format=3 uid="uid://xax2338lav6g"]
 
 [ext_resource type="Script" path="res://Scripts/Onboat.gd" id="1_r5u17"]
+[ext_resource type="PackedScene" uid="uid://evkdvggt0bkw" path="res://Scenes/fishing_minigame.tscn" id="2_1n1ry"]
 [ext_resource type="Script" path="res://Scripts/lilbuddyman.gd" id="2_wa5rn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lej23"]
@@ -10,6 +11,7 @@ load_path = "res://.godot/imported/lilbuddyman_placholder.png-b77660fdeb28c98e9f
 
 [node name="boat" type="Node2D"]
 script = ExtResource("1_r5u17")
+fishing_game_scene = ExtResource("2_1n1ry")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("2_wa5rn")
