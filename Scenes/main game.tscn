@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://2lul8k14hwv5" path="res://Assets/Shaders/CircleBlur64x64.png" id="4_aagcd"]
 [ext_resource type="Texture2D" uid="uid://bkmtl116unb3p" path="res://Assets/Shaders/WaterTrailGradient.png" id="4_oga1k"]
 [ext_resource type="Script" path="res://Scripts/Trails.gd" id="5_75a0m"]
-[ext_resource type="Script" path="res://Scenes/DatabaseManager.gd" id="9_1d2y1"]
+[ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="10_l3s7v"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yv0sr"]
 viewport_path = NodePath("CharacterBody2D/watertrail/SubViewport")
@@ -77,11 +77,10 @@ position_smoothing_speed = 2.0
 [node name="ColorRect" type="ColorRect" parent="CharacterBody2D/Camera2D"]
 z_index = -1
 material = ExtResource("1_ke2rv")
-offset_left = -1069.0
-offset_top = -912.0
-offset_right = 1106.0
-offset_bottom = 979.0
+offset_left = -1140.0
+offset_top = -915.0
+offset_right = 1035.0
+offset_bottom = 976.0
 color = Color(0, 0.356863, 1, 1)
 
-[node name="Node" type="Node" parent="."]
-script = ExtResource("9_1d2y1")
+[node name="UI" parent="." instance=ExtResource("10_l3s7v")]
