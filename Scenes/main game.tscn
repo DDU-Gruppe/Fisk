@@ -78,7 +78,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
 [node name="ColorRect" type="ColorRect" parent="CharacterBody2D/Camera2D"]
-visible = false
 z_index = -1
 material = ExtResource("1_ke2rv")
 offset_left = -841.0
