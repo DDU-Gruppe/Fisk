@@ -1,7 +1,3 @@
 res://Scenes/main game.tscn
 res://Assets/Shaders/RippleShader.tres
-res://Assets/Shaders/WaterTrailSpriteMaterial.tres
 res://Assets/Tiles/Water/WaterShader.tres
-res://Assets/Tiles/Water/WaterMaterial.tres
-res://Assets/Shaders/StaticRippleTestShader.tres
-res://Scripts/Trails.gd
