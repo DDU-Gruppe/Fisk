@@ -3,25 +3,36 @@
 [ext_resource type="Script" path="res://Scripts/Onboat.gd" id="1_r5u17"]
 [ext_resource type="PackedScene" uid="uid://evkdvggt0bkw" path="res://Scenes/fishing_minigame.tscn" id="2_1n1ry"]
 [ext_resource type="Script" path="res://Scripts/lilbuddyman.gd" id="2_wa5rn"]
+[ext_resource type="Texture2D" uid="uid://bd5gk4ut3tgrf" path="res://Fiskeren.png" id="4_w7xtr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lej23"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sinoq"]
-load_path = "res://.godot/imported/lilbuddyman_placholder.png-b77660fdeb28c98e9f19f65e4a06c842.ctex"
 
 [node name="boat" type="Node2D"]
 script = ExtResource("1_r5u17")
 fishing_game_scene = ExtResource("2_1n1ry")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Lilbuddyman" type="CharacterBody2D" parent="."]
 script = ExtResource("2_wa5rn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lilbuddyman"]
 shape = SubResource("RectangleShape2D_lej23")
 debug_color = Color(1, 1, 1, 1)
 
-[node name="boatSprite" type="Sprite2D" parent="CharacterBody2D"]
-texture = SubResource("CompressedTexture2D_sinoq")
+[node name="Lilbuddyman" type="Sprite2D" parent="Lilbuddyman"]
+texture = ExtResource("4_w7xtr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(7.23, 7.23)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -40.0
+offset_right = 56.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 9
+text = "Press space for minigame"

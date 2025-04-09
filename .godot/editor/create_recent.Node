@@ -1,16 +1,10 @@
-<<<<<<< HEAD
 Label
 CanvasLayer
 VBoxContainer
 TextureRect
 HBoxContainer
-=======
-<<<<<<< HEAD
 Sprite2D
-=======
->>>>>>> 0045fa40ac9f0d7f7704eda842c644763bcdbb6a
 Node
->>>>>>> 71bc311e3476b5edc90e43378d6c864d4f667c5b
 Polygon2D
 Camera2D
 CollisionShape2D
@@ -18,4 +12,3 @@ Area2D
 AnimatedSprite2D
 CharacterBody2D
 PanelContainer
-ProgressBar

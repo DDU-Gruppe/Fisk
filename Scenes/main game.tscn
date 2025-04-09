@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://besjg2qgh1bd5"]
+[gd_scene load_steps=14 format=3 uid="uid://besjg2qgh1bd5"]
 
 [ext_resource type="Script" path="res://Scenes/OnMain.gd" id="1_atuaf"]
 [ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_hy2ld"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://2lul8k14hwv5" path="res://Assets/Shaders/CircleBlur64x64.png" id="4_aagcd"]
 [ext_resource type="Texture2D" uid="uid://bkmtl116unb3p" path="res://Assets/Shaders/WaterTrailGradient.png" id="4_oga1k"]
 [ext_resource type="Script" path="res://Scripts/Trails.gd" id="5_75a0m"]
+[ext_resource type="Texture2D" uid="uid://dxx2m7aabr2u" path="res://Assets/boat.png" id="8_a4c8k"]
 [ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="10_l3s7v"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yv0sr"]
@@ -86,3 +87,11 @@ offset_bottom = 976.0
 color = Color(0, 0.356863, 1, 1)
 
 [node name="UI" parent="." instance=ExtResource("10_l3s7v")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 107.0
+offset_top = -165.0
+offset_right = 303.0
+offset_bottom = -116.0
+text = "Press g for on boat scene
+arrowkeys for movement"

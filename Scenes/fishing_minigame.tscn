@@ -88,5 +88,13 @@ aquaContainer = NodePath("../PanelContainer/MarginContainer/VBoxContainer/AquaCo
 position = Vector2(149, 163)
 aquaContainer = NodePath("../PanelContainer/MarginContainer/VBoxContainer/AquaContainer")
 
+[node name="Label" type="Label" parent="."]
+offset_left = 352.0
+offset_top = 16.0
+offset_right = 791.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 35
+text = "Arrow keys for movement"
+
 [connection signal="target_entered" from="FishingGame/Target" to="FishingGame" method="_on_target_target_entered"]
 [connection signal="target_exited" from="FishingGame/Target" to="FishingGame" method="_on_target_target_exited"]

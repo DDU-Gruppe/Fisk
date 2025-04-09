@@ -6,8 +6,6 @@ static var number_incremented: bool = false
 var db
 
 func _init():
-	print("DatabaseManager _init() called. Instance ID:", get_instance_id())
-	
 	# Prevent duplicate initialization.
 	if instance_initialized:
 		return
@@ -22,8 +20,6 @@ func _init():
 				print("Folder created: ", target_folder)
 			else:
 				print("Error creating folder 'my_db_folder': ", err)
-		else:
-			print("Folder already exists: ", target_folder)
 	else:
 		print("Error: Cannot open user:// directory.")
 	
@@ -38,31 +34,30 @@ func _init():
 				dst_file.store_buffer(src_file.get_buffer(src_file.get_length()))
 				src_file.close()
 				dst_file.close()
-				print("Database copied successfully.")
 			else:
 				print("Failed to create destination DB file: ", target_db_path)
 		else:
 			print("Failed to open source DB file: res://db/test.db")
-	else:
-		print("Database already exists at: ", target_db_path)
 	
 	db = SQLite.new()
 	db.path = target_db_path
 	if db.open_db():
-		print("Database opened successfully at: ", target_db_path)
+	
 		
 		ensure_inventory_row()
 		
 		if not number_incremented:
 			if db.query("UPDATE data SET number = COALESCE(number, 0) + 1"):
-				print("Number incremented successfully.")
+				print("")
 			else:
 				print("Failed to increment number:", db.error_message)
 			number_incremented = true
 		
 		if db.query("SELECT number FROM data"):
 			for row in db.query_result:
-				print("Current number is:", row["number"])
+				print("Tries:", row["number"])
+				if row["number"]%10 == 0:
+					print("It really isn't working huh?")
 		else:
 			print("Failed to query number:", db.error_message)
 	else:
@@ -74,7 +69,6 @@ func ensure_inventory_row() -> void:
 		print("Failed to count Inventory rows:", db.error_message)
 	else:
 		var cnt = db.query_result[0]["cnt"]
-		print("Inventory row count:", cnt)
 		if cnt == 0:
 			print("No rows in Inventory. Inserting default row.")
 			# Insert into the correct columns: laks, torsk, bluefish, tun.

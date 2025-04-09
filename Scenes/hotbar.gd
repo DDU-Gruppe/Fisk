@@ -5,7 +5,7 @@ extends Node
 @onready var slot2_label: Label = $VBoxContainer/Slot2/Label3
 @onready var slot3_label: Label = $VBoxContainer/Slot3/Label4
 
-func _process(delta):
+func _process(_delta):
 	update_fish_counts()
 
 func update_fish_counts():
