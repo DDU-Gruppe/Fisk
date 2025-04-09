@@ -18,10 +18,13 @@ config/icon="res://icon.svg"
 [autoload]
 
 DatabaseManager="*res://Scenes/DatabaseManager.gd"
+QuestSystem="*res://addons/quest_system/quest_manager.gd"
+DialogueQuest="*res://addons/dialogue_quest/scripts/dialogue_quest_interface.gd"
+Questify="*res://addons/questify/quest_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_nodes/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg")
 
 [input]
 
@@ -35,6 +38,12 @@ start_fishing={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]
 }
+
+[questify]
+
+general/update_polling=true
+general/update_interval=0.5
+general/add_quests_to_pot_generation=false
 
 [rendering]
 

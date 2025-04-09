@@ -1,9 +1,12 @@
 # Godot 4+ specific ignores
 .godot/
+.godot/**
 
 # Godot-specific ignores
 .import/
 export.cfg
+*.cfg
+*.bin
 export_presets.cfg
 
 # Imported translations (automatically generated from CSV files)
@@ -13,3 +16,46 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+.godot/editor/editor_layout.cfg
+.godot/editor/filesystem_cache8
+.godot/editor/filesystem_update4
+.godot/editor/main game.tscn-editstate-ba5e10c7dba087e33904455eede0eff8.cfg
+.godot/editor/main game.tscn-folding-ba5e10c7dba087e33904455eede0eff8.cfg
+.godot/editor/script_editor_cache.cfg
+.godot/uid_cache.bin
+Scenes/main game.tscn~RF1df737d9.TMP
+/.godot
+/.godot
+.godot/editor/filesystem_cache8
+.godot/editor/editor_layout.cfg
+.godot/editor/filesystem_cache8
+.godot/editor/filesystem_update4
+.godot/editor/main game.tscn-editstate-ba5e10c7dba087e33904455eede0eff8.cfg
+.godot/editor/project_metadata.cfg
+.godot/editor/script_editor_cache.cfg
+.godot/global_script_class_cache.cfg
+.godot/scene_groups_cache.cfg
+.godot/uid_cache.bin
+*.cfg
+*.bin
+.godot/editor/crate.tscn-editstate-a4680594e8a68a77f3fb58b857d74404.cfg
+.godot/editor/create_recent.Node
+.godot/editor/editor_layout.cfg
+.godot/editor/filesystem_update4
+.godot/editor/Fish.tscn-editstate-3f4b93a663cf50c128269e4b86bcf57a.cfg
+.godot/editor/main game.tscn-editstate-ba5e10c7dba087e33904455eede0eff8.cfg
+.godot/editor/menu.tscn-editstate-53a0af8f00fbc899d4d541c34a803049.cfg
+.godot/editor/OnBoat.tscn-editstate-b19c8b2933b11213e6b2b9578af6811f.cfg
+.godot/editor/project_metadata.cfg
+.godot/editor/script_editor_cache.cfg
+.godot/editor/target.tscn-editstate-3b86cb5c0ddc2629501736e35336464c.cfg
+.godot/global_script_class_cache.cfg
+.godot/scene_groups_cache.cfg
+*.cfg
+*.Node
+.godot/editor/editor_layout.cfg
+.godot/editor/filesystem_cache8
+.godot/editor/main game.tscn-editstate-ba5e10c7dba087e33904455eede0eff8.cfg
+.godot/editor/main game.tscn-folding-ba5e10c7dba087e33904455eede0eff8.cfg
+.godot/uid_cache.bin
+/.godot/editor

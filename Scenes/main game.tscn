@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Scripts/Trails.gd" id="5_75a0m"]
 [ext_resource type="Texture2D" uid="uid://dxx2m7aabr2u" path="res://Assets/boat.png" id="8_a4c8k"]
 [ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="10_l3s7v"]
+[ext_resource type="Texture2D" uid="uid://dxx2m7aabr2u" path="res://Assets/boat.png" id="8_uqef8"]
+[ext_resource type="Script" path="res://Scenes/DatabaseManager.gd" id="9_1d2y1"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yv0sr"]
 viewport_path = NodePath("CharacterBody2D/watertrail/SubViewport")
@@ -42,7 +44,7 @@ size = Vector2i(256, 256)
 
 [node name="Line2D" type="Line2D" parent="CharacterBody2D/watertrail/SubViewport" node_paths=PackedStringArray("parent")]
 position = Vector2(128, 128)
-width = 32.0
+width = 64.0
 width_curve = SubResource("Curve_hm2kv")
 gradient = SubResource("Gradient_7pa6c")
 texture = ExtResource("4_oga1k")
@@ -56,15 +58,15 @@ parent = NodePath("../../..")
 largest_tip_width = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/watertrail/SubViewport"]
-position = Vector2(125.615, 128)
-scale = Vector2(1.01, 0.502)
+position = Vector2(129.975, 128)
+scale = Vector2(1.986, 0.987)
 texture = ExtResource("4_aagcd")
 
 [node name="RopeLine" type="Line2D" parent="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(-1, -2)
-texture = ExtResource("8_a4c8k")
+position = Vector2(1, -4)
+texture = ExtResource("8_uqef8")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
 position = Vector2(1.75, 0.249992)
@@ -80,10 +82,10 @@ position_smoothing_speed = 2.0
 [node name="ColorRect" type="ColorRect" parent="CharacterBody2D/Camera2D"]
 z_index = -1
 material = ExtResource("1_ke2rv")
-offset_left = -1140.0
-offset_top = -915.0
-offset_right = 1035.0
-offset_bottom = 976.0
+offset_left = -841.0
+offset_top = -944.0
+offset_right = 1334.0
+offset_bottom = 947.0
 color = Color(0, 0.356863, 1, 1)
 
 [node name="UI" parent="." instance=ExtResource("10_l3s7v")]
@@ -95,3 +97,6 @@ offset_right = 303.0
 offset_bottom = -116.0
 text = "Press g for on boat scene
 arrowkeys for movement"
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("9_1d2y1")
