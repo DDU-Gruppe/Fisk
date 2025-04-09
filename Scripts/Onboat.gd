@@ -19,7 +19,7 @@ func _process(_delta):
 func _input(event):
 	if event.is_action_pressed("toggle_boat_scene"):
 		get_tree().change_scene_to_file("res://Scenes/main game.tscn")
-	
+
 	if event.is_action_pressed("start_fishing") && is_fishing == false:
 		if fishing_game_scene:
 			# Disable movement if necessary.

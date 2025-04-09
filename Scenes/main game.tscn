@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://besjg2qgh1bd5"]
+[gd_scene load_steps=15 format=3 uid="uid://besjg2qgh1bd5"]
 
 [ext_resource type="Script" path="res://Scenes/OnMain.gd" id="1_atuaf"]
 [ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_hy2ld"]
@@ -8,11 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://2lul8k14hwv5" path="res://Assets/Shaders/CircleBlur64x64.png" id="4_aagcd"]
 [ext_resource type="Texture2D" uid="uid://bkmtl116unb3p" path="res://Assets/Shaders/WaterTrailGradient.png" id="4_oga1k"]
 [ext_resource type="Script" path="res://Scripts/Trails.gd" id="5_75a0m"]
-[ext_resource type="Texture2D" uid="uid://dxx2m7aabr2u" path="res://Assets/boat.png" id="8_a4c8k"]
-[ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="10_l3s7v"]
 [ext_resource type="Texture2D" uid="uid://dxx2m7aabr2u" path="res://Assets/boat.png" id="8_uqef8"]
 [ext_resource type="Script" path="res://Scenes/DatabaseManager.gd" id="9_1d2y1"]
-[ext_resource type="Script" path="res://addons/quest_system/quest_manager.gd" id="11_quest"]
+[ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="10_l3s7v"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yv0sr"]
 viewport_path = NodePath("CharacterBody2D/watertrail/SubViewport")
@@ -101,6 +99,3 @@ arrowkeys for movement"
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("9_1d2y1")
-
-[node name="QuestManager" type="Node"]
-script = ExtResource("11_quest")

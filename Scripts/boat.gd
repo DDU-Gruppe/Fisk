@@ -28,10 +28,6 @@ func _ready():
 	noise.seed = randi()
 	noise.frequency = 0.3
 
-	var quest_manager = $QuestManager
-	var quest = preload("res://quests/find_treasure.tres").instance()
-	quest_manager.add_quest(quest)
-
 func _physics_process(delta: float) -> void:
 	handle_input(delta)
 	apply_movement(delta)
@@ -149,24 +145,3 @@ func add_crate():
 		# Reset the flag after a short delay to allow adding another crate
 		await get_tree().create_timer(0.5).timeout  # 0.5-second cooldown
 		can_add_crate = true
-
-func on_player_reaches_treasure():
-	var quest_manager = $"/root/QuestManager"
-	var quest = quest_manager.get_quest_by_id(1)  # Assuming ID 1 is "Find the Treasure"
-	quest.objective_completed = true
-	quest_manager.complete_quest(quest)
-
-func save_quests():
-	var quest_manager = $"/root/QuestManager"
-	var quest_data = quest_manager.quests_as_dict()
-	var file = FileAccess.open("user://quests.save", FileAccess.WRITE)
-	file.store_var(quest_data)
-	file.close()
-
-func load_quests():
-	var quest_manager = $"/root/QuestManager"
-	var file = FileAccess.open("user://quests.save", FileAccess.READ)
-	if file:
-		var quest_data = file.get_var()
-		quest_manager.deserialize_quests(quest_data)
-		file.close()
