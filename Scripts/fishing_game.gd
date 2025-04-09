@@ -28,7 +28,7 @@ func select_random_fish() -> void:
 	current_fish = fish_data[chosen_index]
 	print("Selected fish: ", current_fish.column)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if onCatch:
 		catchingValue += catchSpeed
 	else:

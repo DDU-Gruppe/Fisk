@@ -27,7 +27,7 @@ func _set_new_target_position() -> void:
 
 	targetPosition = Vector2(xPosition, yPosition)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction := (targetPosition - global_position).normalized()
 
 	if direction:

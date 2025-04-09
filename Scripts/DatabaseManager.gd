@@ -22,9 +22,9 @@ func _init():
 				print("Error creating folder 'my_db_folder': ", err)
 	else:
 		print("Error: Cannot open user:// directory.")
-	
+
 	var target_db_path = target_folder + "/test.db"
-	
+
 	if not FileAccess.file_exists(target_db_path):
 		print("Copying database to: ", target_db_path)
 		var src_file = FileAccess.open("res://db/test.db", FileAccess.READ)
@@ -38,21 +38,21 @@ func _init():
 				print("Failed to create destination DB file: ", target_db_path)
 		else:
 			print("Failed to open source DB file: res://db/test.db")
-	
+
 	db = SQLite.new()
 	db.path = target_db_path
 	if db.open_db():
-	
-		
+
+
 		ensure_inventory_row()
-		
+
 		if not number_incremented:
 			if db.query("UPDATE data SET number = COALESCE(number, 0) + 1"):
 				print("")
 			else:
 				print("Failed to increment number:", db.error_message)
 			number_incremented = true
-		
+
 		if db.query("SELECT number FROM data"):
 			for row in db.query_result:
 				print("Tries:", row["number"])

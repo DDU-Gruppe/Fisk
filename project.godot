@@ -17,14 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DatabaseManager="*res://Scenes/DatabaseManager.gd"
-QuestSystem="*res://addons/quest_system/quest_manager.gd"
-DialogueQuest="*res://addons/dialogue_quest/scripts/dialogue_quest_interface.gd"
-Questify="*res://addons/questify/quest_manager.gd"
+DatabaseManager="*res://Scripts/DatabaseManager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_nodes/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_nodes/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg")
 
 [input]
 

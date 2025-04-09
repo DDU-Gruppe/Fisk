@@ -1,15 +1,15 @@
 [gd_scene load_steps=15 format=3 uid="uid://besjg2qgh1bd5"]
 
-[ext_resource type="Script" path="res://Scenes/OnMain.gd" id="1_atuaf"]
 [ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_hy2ld"]
 [ext_resource type="Material" uid="uid://cgjocunkt7lim" path="res://Assets/Tiles/Water/WaterMaterial.tres" id="1_ke2rv"]
+[ext_resource type="Script" path="res://Scripts/OnMain.gd" id="1_kyo10"]
 [ext_resource type="Script" path="res://Scripts/boat.gd" id="1_u2yd8"]
 [ext_resource type="PackedScene" uid="uid://b2adnqiauk7vp" path="res://Scenes/crate.tscn" id="2_3856p"]
 [ext_resource type="Texture2D" uid="uid://2lul8k14hwv5" path="res://Assets/Shaders/CircleBlur64x64.png" id="4_aagcd"]
 [ext_resource type="Texture2D" uid="uid://bkmtl116unb3p" path="res://Assets/Shaders/WaterTrailGradient.png" id="4_oga1k"]
 [ext_resource type="Script" path="res://Scripts/Trails.gd" id="5_75a0m"]
 [ext_resource type="Texture2D" uid="uid://dxx2m7aabr2u" path="res://Assets/boat.png" id="8_uqef8"]
-[ext_resource type="Script" path="res://Scenes/DatabaseManager.gd" id="9_1d2y1"]
+[ext_resource type="Script" path="res://Scripts/DatabaseManager.gd" id="9_1d2y1"]
 [ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="10_l3s7v"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yv0sr"]
@@ -23,7 +23,7 @@ point_count = 2
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_atuaf")
+script = ExtResource("1_kyo10")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 motion_mode = 1
