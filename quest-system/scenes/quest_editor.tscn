@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://quests/quest.tres" type="Resource" id=1]
+
+[node name="QuestEditor" type="Control"]
+rect_min_size = Vector2(400, 300)
+
+[node name="QuestList" type="ItemList" parent="."]
+anchors_preset = 2
+margin_left = 10
+margin_top = 10
+margin_right = 10
+margin_bottom = 50
+
+[node name="EditButton" type="Button" parent="."]
+text = "Edit Quest"
+anchors_preset = 2
+margin_left = 10
+margin_top = 250
+margin_right = 10
+margin_bottom = 10
+
+[node name="DeleteButton" type="Button" parent="."]
+text = "Delete Quest"
+anchors_preset = 2
+margin_left = 120
+margin_top = 250
+margin_right = 10
+margin_bottom = 10
+
+[node name="QuestName" type="LineEdit" parent="."]
+placeholder_text = "Quest Name"
+anchors_preset = 2
+margin_left = 10
+margin_top = 300
+margin_right = 10
+margin_bottom = 10
+
+[node name="QuestDescription" type="TextEdit" parent="."]
+placeholder_text = "Quest Description"
+anchors_preset = 2
+margin_left = 10
+margin_top = 340
+margin_right = 10
+margin_bottom = 10
+
+[node name="Objectives" type="TextEdit" parent="."]
+placeholder_text = "Objectives (one per line)"
+anchors_preset = 2
+margin_left = 10
+margin_top = 400
+margin_right = 10
+margin_bottom = 10
+
+[node name="Reward" type="SpinBox" parent="."]
+min_value = 0
+max_value = 1000
+step = 10
+anchors_preset = 2
+margin_left = 10
+margin_top = 500
+margin_right = 10
+margin_bottom = 10
+
+[node name="SaveButton" type="Button" parent="."]
+text = "Save Quest"
+anchors_preset = 2
+margin_left = 10
+margin_top = 550
+margin_right = 10
+margin_bottom = 10

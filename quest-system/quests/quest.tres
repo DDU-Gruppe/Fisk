@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[resource]
+name = "Find the Treasure"
+description = "Locate the hidden treasure in the forest."
+objectives = ["Find the map", "Reach the marked location", "Dig up the treasure"]
+reward = 100
+is_completed = false

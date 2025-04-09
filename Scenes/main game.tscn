@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="10_l3s7v"]
 [ext_resource type="Texture2D" uid="uid://dxx2m7aabr2u" path="res://Assets/boat.png" id="8_uqef8"]
 [ext_resource type="Script" path="res://Scenes/DatabaseManager.gd" id="9_1d2y1"]
+[ext_resource type="Script" path="res://addons/quest_system/quest_manager.gd" id="11_quest"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yv0sr"]
 viewport_path = NodePath("CharacterBody2D/watertrail/SubViewport")
@@ -100,3 +101,6 @@ arrowkeys for movement"
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("9_1d2y1")
+
+[node name="QuestManager" type="Node"]
+script = ExtResource("11_quest")

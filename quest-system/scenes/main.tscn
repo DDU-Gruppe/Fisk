@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[node name="Main" type="Node"]
+
+# Main game scene
+# This scene initializes the game and references the QuestManager
+
+[node name="QuestManager" type="Node"]
+script = ExtResource("res://quests/quest_manager.gd")
+
+# Additional game components can be added here as needed
+
+[node name="UI" type="Control"]
+# Placeholder for UI elements
+# This can include buttons, labels, and other UI components for the game.
