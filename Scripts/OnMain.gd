@@ -4,6 +4,12 @@ extends Node
 static var instance_initialized: bool = false
 static var number_incremented: bool = false
 
+func _ready():
+	# Load the quest resource
+	var fish_quest = preload("res://Quest System/20_fish.tres")
+# Assign it to the display node
+	$QuestDisplay.set_quest(fish_quest)
+
 
 	# Instantiate the SQLite object (assuming the plugin registers a global class named "SQLite").
 func _input(event):
