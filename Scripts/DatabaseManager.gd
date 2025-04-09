@@ -107,3 +107,9 @@ func increase_fish(fish_column: String, amount: int = 1) -> void:
 func _on_fishing_win(column_name: String) -> void:
 	print("Win signal received for column:", column_name)
 	increase_fish(column_name, 1)
+	
+	if has_node("QuestDisplay"):
+		var quest_display = $QuestDisplay
+		if quest_display.quest:
+			if quest_display.quest.use_total_fish or quest_display.quest.fish_column == column_name:
+				quest_display.update_from_db(column_name)

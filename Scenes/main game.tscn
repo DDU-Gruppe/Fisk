@@ -102,7 +102,3 @@ arrowkeys for movement"
 script = ExtResource("9_1d2y1")
 
 [node name="QuestDisplay" parent="." instance=ExtResource("12_y6yg5")]
-offset_left = 1105.0
-offset_top = 34.0
-offset_right = 1105.0
-offset_bottom = 34.0
