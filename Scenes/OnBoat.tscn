@@ -1,15 +1,107 @@
-[gd_scene load_steps=6 format=3 uid="uid://xax2338lav6g"]
+[gd_scene load_steps=19 format=3 uid="uid://xax2338lav6g"]
 
 [ext_resource type="Script" path="res://Scripts/Onboat.gd" id="1_r5u17"]
-[ext_resource type="PackedScene" uid="uid://evkdvggt0bkw" path="res://Scenes/fishing_minigame.tscn" id="2_1n1ry"]
 [ext_resource type="Script" path="res://Scripts/lilbuddyman.gd" id="2_wa5rn"]
-[ext_resource type="Texture2D" uid="uid://bd5gk4ut3tgrf" path="res://Fiskeren.png" id="4_w7xtr"]
+[ext_resource type="Texture2D" uid="uid://cg2tjdgvbnjik" path="res://Fisker.png" id="4_gp5pd"]
+[ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="5_70rhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lej23"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tmeso"]
+load_path = "res://.godot/imported/Fisker.png-da577c7200d7406a3b4cfecc76d146fb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jak5"]
+atlas = SubResource("CompressedTexture2D_tmeso")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0138m"]
+atlas = SubResource("CompressedTexture2D_tmeso")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p51d4"]
+atlas = SubResource("CompressedTexture2D_tmeso")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfa6i"]
+atlas = SubResource("CompressedTexture2D_tmeso")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0hsr"]
+atlas = SubResource("CompressedTexture2D_tmeso")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eiedm"]
+atlas = SubResource("CompressedTexture2D_tmeso")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b542l"]
+atlas = ExtResource("4_gp5pd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcqsa"]
+atlas = ExtResource("4_gp5pd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kimqv"]
+atlas = ExtResource("4_gp5pd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oirbe"]
+atlas = ExtResource("4_gp5pd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yodsq"]
+atlas = ExtResource("4_gp5pd")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0hb0k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jak5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0138m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p51d4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfa6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0hsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eiedm")
+}],
+"loop": false,
+"name": &"Fishing",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b542l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcqsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kimqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oirbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yodsq")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
 [node name="boat" type="Node2D"]
 script = ExtResource("1_r5u17")
-fishing_game_scene = ExtResource("2_1n1ry")
 
 [node name="Lilbuddyman" type="CharacterBody2D" parent="."]
 script = ExtResource("2_wa5rn")
@@ -18,8 +110,10 @@ script = ExtResource("2_wa5rn")
 shape = SubResource("RectangleShape2D_lej23")
 debug_color = Color(1, 1, 1, 1)
 
-[node name="Lilbuddyman" type="Sprite2D" parent="Lilbuddyman"]
-texture = ExtResource("4_w7xtr")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Lilbuddyman"]
+sprite_frames = SubResource("SpriteFrames_0hb0k")
+animation = &"Walk"
+frame_progress = 0.197574
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(7.23, 7.23)
@@ -34,5 +128,7 @@ offset_right = 56.0
 offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 12
 text = "Press space for minigame"
+
+[node name="UI" parent="." instance=ExtResource("5_70rhm")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://besjg2qgh1bd5"]
+[gd_scene load_steps=15 format=3 uid="uid://besjg2qgh1bd5"]
 
 [ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_hy2ld"]
 [ext_resource type="Material" uid="uid://cgjocunkt7lim" path="res://Assets/Tiles/Water/WaterMaterial.tres" id="1_ke2rv"]
@@ -82,23 +82,24 @@ position_smoothing_speed = 2.0
 [node name="ColorRect" type="ColorRect" parent="CharacterBody2D/Camera2D"]
 z_index = -1
 material = ExtResource("1_ke2rv")
-offset_left = -841.0
-offset_top = -944.0
-offset_right = 1334.0
-offset_bottom = 947.0
+offset_left = -1302.0
+offset_top = -879.0
+offset_right = 873.0
+offset_bottom = 1012.0
 color = Color(0, 0.356863, 1, 1)
 
-[node name="UI" parent="." instance=ExtResource("10_l3s7v")]
-
-[node name="Label" type="Label" parent="."]
-offset_left = 107.0
-offset_top = -165.0
-offset_right = 303.0
-offset_bottom = -116.0
+[node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
+offset_left = -97.0
+offset_top = -93.0
+offset_right = 99.0
+offset_bottom = -44.0
+theme_override_font_sizes/font_size = 16
 text = "Press g for on boat scene
 arrowkeys for movement"
 
-[node name="Node" type="Node" parent="."]
+[node name="UI" parent="." instance=ExtResource("10_l3s7v")]
+
+[node name="Database" type="Node" parent="."]
 script = ExtResource("9_1d2y1")
 
 [node name="QuestDisplay" parent="." instance=ExtResource("12_y6yg5")]

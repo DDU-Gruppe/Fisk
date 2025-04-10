@@ -4,6 +4,7 @@ extends Node
 @onready var slot1_label: Label = $VBoxContainer/Slot1/Label2
 @onready var slot2_label: Label = $VBoxContainer/Slot2/Label3
 @onready var slot3_label: Label = $VBoxContainer/Slot3/Label4
+@onready var slot4_label: Label = $Slot4/Label5
 
 func _process(_delta):
 	update_fish_counts()
@@ -14,3 +15,4 @@ func update_fish_counts():
 	slot1_label.text = str(counts.get("torsk", 0))
 	slot2_label.text = str(counts.get("bluefish", 0))
 	slot3_label.text = str(counts.get("tun", 0))
+	slot4_label.text = str(counts.get("coin",0))
