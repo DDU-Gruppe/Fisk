@@ -53,7 +53,6 @@ func _game_end() -> void:
 	
 	# Call DatabaseManager to increase coins by that amount.
 	DatabaseManager.increase_coins(coin_amount)
-	
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(self, "global_position", global_position + Vector2(0, 700), 0.5)
 	await tween.finished

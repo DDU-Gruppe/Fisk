@@ -120,17 +120,17 @@ frame_progress = 0.197574
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(7.23, 7.23)
 
-[node name="Label" type="Label" parent="."]
+[node name="UI" parent="." instance=ExtResource("5_70rhm")]
+
+[node name="Label" type="Label" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -56.0
-offset_top = -40.0
-offset_right = 56.0
-offset_bottom = -27.0
+offset_left = 272.0
+offset_top = 24.0
+offset_right = 384.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 42
 text = "Press space for minigame"
-
-[node name="UI" parent="." instance=ExtResource("5_70rhm")]

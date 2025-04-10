@@ -7,8 +7,8 @@ static var number_incremented: bool = false
 func _ready():
 	# Load the quest resource
 	var quest = preload("res://Quest System/20_fish.tres")
-	$QuestDisplay.set_quest(quest)
-	#$QuestDisplay.update_from_db(quest.fish_column)
+	$UI/QuestDisplay.set_quest(quest)
+	$UI/QuestDisplay.update_from_db(quest.fish_column)
 
 
 	# Instantiate the SQLite object (assuming the plugin registers a global class named "SQLite").

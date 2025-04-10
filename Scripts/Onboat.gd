@@ -12,6 +12,10 @@ func _ready():
 	else:
 		original_position = boat_character.position
 		print("Original position of lilbuddyman:", original_position)
+		
+	var quest = preload("res://Quest System/20_fish.tres")
+	$UI/QuestDisplay.set_quest(quest)
+	$UI/QuestDisplay.update_from_db(quest.fish_column)
 
 func _process(_delta):
 	pass

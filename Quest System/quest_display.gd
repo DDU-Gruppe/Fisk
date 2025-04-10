@@ -6,11 +6,13 @@ extends CanvasLayer
 @onready var progress_bar = $VBoxContainer/ProgressBar
 
 var quest: Quest
+var newgoal : int
 
 func set_quest(new_quest: Quest):
 	quest = new_quest
 	update_quest_data()
 	update_display()
+	print("Quest set:", quest.name, "Start value:", quest.start_value, "Goal:", newgoal)  # Debug
 
 func update_quest_data():
 	# Get fish counts from the database
@@ -21,13 +23,11 @@ func update_quest_data():
 		var total_fish = 0
 		for value in counts.values():
 			total_fish += value  # Sum of all fish counts
-		# Set the starting value and goal accordingly
+
+		# Set the starting value and increase the goal by that amount
 		quest.start_value = total_fish
-		quest.goal = quest.start_value + 20  # Set the goal as 20 more than the start value
-	else:
-		# Specific fish column (e.g., "laks", "torsk")
-		quest.start_value = counts.get(quest.fish_column, 0)  # Fish count for specific column
-		quest.goal = quest.start_value + 20  # Set the goal as 20 more than the start value
+		if newgoal <= (quest.goal+quest.start_value):
+			newgoal = quest.goal + quest.start_value
 
 func update_display():
 	# Update labels and progress bar display
@@ -49,21 +49,19 @@ func update_progress(value: int):
 
 func update_from_db(fish_column: String):
 	var fish_counts = DatabaseManager.get_fish_counts()
+	print("Fish counts from DB:", fish_counts)  # Debug
 
 	if quest.use_total_fish:
-		# Calculate total fish caught (across all columns)
 		var total = 0
 		for value in fish_counts.values():
 			total += value
-		# Update progress based on the total fish caught
-		var new_progress = total - quest.start_value
-		print("Updating progress (total fish):", new_progress)
+		var new_progress = quest.start_value
+		print("Updating progress (total fish):", new_progress)  # Debug
 		update_progress(new_progress)
 	else:
-		# If tracking one specific fish type
 		if fish_column in fish_counts:
 			var new_progress = fish_counts[fish_column] - quest.start_value
-			print("Updating progress (specific fish):", new_progress)
+			print("Updating progress (specific fish):", new_progress)  # Debug
 			update_progress(new_progress)
 		else:
 			print("Fish column '%s' not found in database!" % fish_column)
