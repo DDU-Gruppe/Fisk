@@ -17,6 +17,7 @@ offset_bottom = 124.0
 text = "Back"
 
 [node name="Button2" type="Button" parent="."]
+layout_mode = 0
 offset_left = 72.0
 offset_top = 193.0
 offset_right = 346.0
