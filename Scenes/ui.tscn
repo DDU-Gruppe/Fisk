@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dv3tjrpsbirqi"]
+[gd_scene load_steps=7 format=3 uid="uid://dv3tjrpsbirqi"]
 
 [ext_resource type="Script" path="res://Scenes/hotbar.gd" id="1_10et2"]
 [ext_resource type="Texture2D" uid="uid://dgned5q4kemno" path="res://Assets/Fish/laks.png" id="2_xkml2"]
 [ext_resource type="Texture2D" uid="uid://dkiwnibjkg6t3" path="res://Assets/Fish/torsk.png" id="3_d3puc"]
 [ext_resource type="Texture2D" uid="uid://b45n63scaditd" path="res://Assets/Fish/bluefish.png" id="4_i35v6"]
 [ext_resource type="Texture2D" uid="uid://co0a1wsc1utas" path="res://Assets/Fish/tun.png" id="5_ab7qh"]
+[ext_resource type="Texture2D" uid="uid://cqirjx06p5obd" path="res://Assets/coin.png" id="6_rcx8d"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -83,6 +84,28 @@ offset_left = -15.92
 offset_top = 10.0
 offset_right = 24.08
 offset_bottom = 52.0
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot4" type="TextureRect" parent="Hotbar"]
+offset_left = 10.0
+offset_top = 533.0
+offset_right = 90.0
+offset_bottom = 646.0
+texture = ExtResource("6_rcx8d")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label5" type="Label" parent="Hotbar/Slot4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.105
+anchor_right = 1.105
+offset_left = -5.92
+offset_top = 31.0
+offset_right = 31.08
+offset_bottom = 73.0
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1

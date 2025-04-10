@@ -9,5 +9,3 @@ static var number_incremented: bool = false
 func _input(event):
 	if event.is_action_pressed("toggle_boat_scene"):
 		get_tree().change_scene_to_file("res://Scenes/OnBoat.tscn")
-	if event.is_action_pressed("start_fishing"):
-		get_tree().change_scene_to_file("res://Scenes/fishing_minigame.tscn")
