@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://besjg2qgh1bd5"]
+[gd_scene load_steps=16 format=3 uid="uid://besjg2qgh1bd5"]
 
 [ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_hy2ld"]
 [ext_resource type="Material" uid="uid://cgjocunkt7lim" path="res://Assets/Tiles/Water/WaterMaterial.tres" id="1_ke2rv"]

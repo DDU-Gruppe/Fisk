@@ -39,13 +39,11 @@ func _init():
 	db = SQLite.new()
 	db.path = target_db_path
 	if db.open_db():
-
-
 		ensure_inventory_row()
 
 		if not number_incremented:
 			if db.query("UPDATE data SET number = COALESCE(number, 0) + 1"):
-				print("")  # We don't print a "success" message here
+				print("")  # No message on success
 			else:
 				print("Failed to increment number:", db.error_message)
 			number_incremented = true
@@ -53,16 +51,12 @@ func _init():
 		if db.query("SELECT number FROM data"):
 			for row in db.query_result:
 				print("Tries:", row["number"])
-				if row["number"]%10 == 0:
+				if row["number"] % 10 == 0:
 					print("It really isn't working huh?")
+				else:
+					print("Current number is:", row["number"])
 		else:
 			print("Failed to query number:", db.error_message)
-		else:
-			# Print the new number value from data.
-			for row in db.query_result:
-				print("Current number is:", row["number"])
-				if (row["number"]%10 == 0):
-					print("It's not working huh?")
 	else:
 		print("Failed to open database at:", target_db_path)
 
@@ -83,7 +77,7 @@ func get_data() -> Array:
 
 func get_fish_counts() -> Dictionary:
 	# Query for laks, torsk, bluefish, tun, and coin.
-	if db.query("SELECT laks, torsk, bluefish, tun, coin FROM Inventory LIMIT 1") == false:
+	if db.query("SELECT laks, torsk, bluefish, tun FROM Inventory LIMIT 1") == false:
 		print("SQL Query failed in get_fish_counts():", db.error_message)
 		return {}
 	return db.query_result[0]
@@ -114,7 +108,7 @@ func increase_coins(amount: int) -> void:
 
 func _on_fishing_win(column_name: String) -> void:
 	increase_fish(column_name, 1)
-	
+
 	if has_node("QuestDisplay"):
 		var quest_display = $QuestDisplay
 		if quest_display.quest:
