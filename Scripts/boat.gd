@@ -4,9 +4,9 @@ extends CharacterBody2D
 @export var acceleration: float = 30.0
 @export var deceleration: float = 10.0
 @export var turn_speed: float = 3.0
-@export var bobbing_amount: float = 0.0  
-@export var bobbing_speed: float = 1.5  
-@export var bobbing_randomness: float = 1.0  
+@export var bobbing_amount: float = 0.0
+@export var bobbing_speed: float = 1.5
+@export var bobbing_randomness: float = 1.0
 @export var crate_scene: PackedScene  # Set in Inspector
 @export var max_crates: int = 5  # Maximum number of crates to create
 
@@ -26,7 +26,7 @@ var can_add_crate: bool = true  # Flag to control crate addition
 
 func _ready():
 	noise.seed = randi()
-	noise.frequency = 0.3  
+	noise.frequency = 0.3
 
 func _physics_process(delta: float) -> void:
 	handle_input(delta)
