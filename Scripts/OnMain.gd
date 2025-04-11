@@ -6,9 +6,7 @@ static var number_incremented: bool = false
 
 
 func _ready():
-	var quest = $UI/QuestDisplay
-	# Load the quest resource
-	#quest.update_from_db(quest.fish_column)
+	pass
 
 
 	# Instantiate the SQLite object (assuming the plugin registers a global class named "SQLite").

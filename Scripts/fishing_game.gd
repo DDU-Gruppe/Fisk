@@ -43,20 +43,20 @@ func _physics_process(_delta: float) -> void:
 
 func _game_end() -> void:
 	var tween = get_tree().create_tween()
-	
+
 	# Emit the win signal for the fish column (if needed)
 	emit_signal("win", current_fish.column)
-	
+
 	# Generate a random coin reward between 1 and 10.
 	var coin_amount = randi() % 10 + 1
 	print("Random coin reward: ", coin_amount)
-	
+
 	# Call DatabaseManager to increase coins by that amount.
 	DatabaseManager.increase_coins(coin_amount)
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(self, "global_position", global_position + Vector2(0, 700), 0.5)
 	await tween.finished
-	
+
 	# Optionally unpause the game and free this scene.
 	get_tree().paused = false
 	queue_free()

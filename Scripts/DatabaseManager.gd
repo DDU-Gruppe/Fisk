@@ -167,7 +167,7 @@ func increase_coins(amount: int) -> void:
 func _on_fishing_win(column_name: String) -> void:
 	print("Win signal received for column:", column_name)
 	increase_fish(column_name, 1)
-	
+
 func print_temp_difference() -> void:
 	# Query the total fish and the current temp value from the Inventory table.
 	var query = "SELECT (laks + torsk + bluefish + tun) AS total_fish, temp FROM Inventory LIMIT 1"
