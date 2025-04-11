@@ -1,4 +1,4 @@
-extends Node	
+extends Node
 
 # Static flags to persist state even if the script is reloaded.
 static var instance_initialized: bool = false

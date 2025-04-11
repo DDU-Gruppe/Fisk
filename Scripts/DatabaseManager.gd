@@ -59,8 +59,6 @@ func _init():
 				if row["number"] % 10 == 0:
 					print("It really isn't working huh?")
 		else:
-			print("Failed to query number:", db.error_message)
-		else:
 			for row in db.query_result:
 				print("Current number is:", row["number"])
 	else:
@@ -101,24 +99,20 @@ func load_quest_data(quest_id: int) -> Dictionary:
 
 func set_quest_active(is_active: bool) -> void:
 	if is_active:
-		# Query the total fish count.
 		var sum_query = "SELECT (laks + torsk + bluefish + tun) AS total_fish FROM Inventory LIMIT 1"
 		if db.query(sum_query) == false:
 			print("Failed to compute total fish:", db.error_message)
 			return
 		var total_fish = int(db.query_result[0]["total_fish"])
-		# Update quest to 1 and temp to total_fish.
 		var update_query = "UPDATE Inventory SET quest = 1, temp = %d" % total_fish
 		if db.query(update_query) == false:
 			print("Failed to activate quest or update temp:", db.error_message)
 		else:
-			# Re-query temp to verify.
 			if db.query("SELECT temp AS new_temp FROM Inventory LIMIT 1") == false:
 				print("Failed to re-query temp:", db.error_message)
 			else:
 				var new_temp = int(db.query_result[0]["new_temp"])
-				var diff = total_fish - new_temp
-				print("temp set to:", new_temp, " | Difference (total fish - temp):", diff)
+				print("New temp value is:", new_temp)
 	else:
 		var update_query = "UPDATE Inventory SET quest = 0"
 		if db.query(update_query) == false:

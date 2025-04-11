@@ -18,10 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 DatabaseManager="*res://Scripts/DatabaseManager.gd"
+Questmanager="*res://questmanager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_nodes/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
 
 [input]
 
