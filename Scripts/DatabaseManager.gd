@@ -42,9 +42,10 @@ func _init():
 	db = SQLite.new()
 	db.path = target_db_path
 	if db.open_db():
-
+		# Ensure the Inventory table has a row
 		ensure_inventory_row()
 
+		# Existing logic for incrementing and querying the 'number' column
 		if not number_incremented:
 			if db.query("UPDATE data SET number = COALESCE(number, 0) + 1"):
 				print("")
@@ -55,7 +56,7 @@ func _init():
 		if db.query("SELECT number FROM data"):
 			for row in db.query_result:
 				print("Tries:", row["number"])
-				if row["number"]%10 == 0:
+				if row["number"] % 10 == 0:
 					print("It really isn't working huh?")
 		else:
 			print("Failed to query number:", db.error_message)
@@ -76,6 +77,25 @@ func ensure_inventory_row() -> void:
 			else:
 				print("Default Inventory row inserted.")
 
+func save_quest_data(quest_id: int, start_value: int, progress: int, is_completed: int) -> void:
+	# Save or update quest data in the database
+	var query = """
+	INSERT OR REPLACE INTO quests (quest_id, start_value, progress, is_completed)
+	VALUES (?, ?, ?, ?);
+	"""
+	if db.query_with_bindings(query, [quest_id, start_value, progress, int(is_completed)]):
+		print("Quest data saved for quest_id:", quest_id)
+	else:
+		print("Failed to save quest data for quest_id:", quest_id, "Error:", db.error_message)
+
+func load_quest_data(quest_id: int) -> Dictionary:
+	# Load quest data from the database
+	var query = "SELECT * FROM quests WHERE quest_id = ?;"
+	if db.query_with_bindings(query, [quest_id]):
+		if db.query_result and db.query_result.size() > 0:
+			return db.query_result[0]
+	return {"start_value": 0, "progress": 0, "is_completed": 0}
+
 func get_data() -> Array:
 	if db.query("SELECT * FROM Inventory LIMIT 1") == false:
 		print("SQL Query failed in get_data():", db.error_message)
@@ -93,7 +113,7 @@ func get_fish_counts() -> Dictionary:
 func get_coin_counts() -> Dictionary:
 	if db.query("SELECT coin FROM Inventory LIMIT 1") == false:
 		print("SQL Query failed in get_coin:counts():", db.error_message)
-		return{}
+		return {}
 	return db.query_result[0]
 
 func increase_fish(fish_column: String, amount: int = 1) -> void:

@@ -125,3 +125,4 @@ Scenes/main game.tscn~RF1df737d9.TMP
 .godot/editor/boat.gd-folding-d89b09ae8b33e1a8c701253129e9f668.cfg
 .godot/editor/boat.gd-folding-83a573864c87c4bd93da2147cc5f6e3b.cfg
 *.bin
+*.tmp
