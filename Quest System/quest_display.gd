@@ -20,8 +20,7 @@ func update_quest_data():
 		# Calculate total fish caught across all columns
 		var total_fish = 0
 		for value in counts.values():
-			total_fish += value  # Sum of all fish counts
-		# Set the starting value and goal accordingly
+			total_fish += int(value) # Set the starting value and goal accordingly
 		quest.start_value = total_fish
 		quest.goal = quest.start_value + 20  # Set the goal as 20 more than the start value
 	else:

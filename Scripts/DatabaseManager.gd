@@ -43,20 +43,16 @@ func _init():
 
 		if not number_incremented:
 			if db.query("UPDATE data SET number = COALESCE(number, 0) + 1"):
-				print("")  # No message on success
+				print("")  # No output on success.
 			else:
 				print("Failed to increment number:", db.error_message)
 			number_incremented = true
 
-		if db.query("SELECT number FROM data"):
-			for row in db.query_result:
-				print("Tries:", row["number"])
-				if row["number"] % 10 == 0:
-					print("It really isn't working huh?")
-				else:
-					print("Current number is:", row["number"])
-		else:
+		if db.query("SELECT number FROM data") == false:
 			print("Failed to query number:", db.error_message)
+		else:
+			for row in db.query_result:
+				print("Current number is:", row["number"])
 	else:
 		print("Failed to open database at:", target_db_path)
 
@@ -66,8 +62,35 @@ func ensure_inventory_row() -> void:
 	else:
 		var cnt = db.query_result[0]["cnt"]
 		if cnt == 0:
-			if db.query("INSERT INTO Inventory (laks, torsk, bluefish, tun, coin) VALUES (0, 0, 0, 0, 0)") == false:
+			if db.query("INSERT INTO Inventory (laks, torsk, bluefish, tun, coin, temp, quest) VALUES (0, 0, 0, 0, 0, 0, 0)") == false:
 				print("Failed to insert default Inventory row:", db.error_message)
+
+func set_quest_active(is_active: bool) -> void:
+	if is_active:
+		# Query the total fish count.
+		var sum_query = "SELECT (laks + torsk + bluefish + tun) AS total_fish FROM Inventory LIMIT 1"
+		if db.query(sum_query) == false:
+			print("Failed to compute total fish:", db.error_message)
+			return
+		var total_fish = int(db.query_result[0]["total_fish"])
+		# Update quest to 1 and temp to total_fish.
+		var update_query = "UPDATE Inventory SET quest = 1, temp = %d" % total_fish
+		if db.query(update_query) == false:
+			print("Failed to activate quest or update temp:", db.error_message)
+		else:
+			# Re-query temp to verify.
+			if db.query("SELECT temp AS new_temp FROM Inventory LIMIT 1") == false:
+				print("Failed to re-query temp:", db.error_message)
+			else:
+				var new_temp = int(db.query_result[0]["new_temp"])
+				var diff = total_fish - new_temp
+				print("temp set to:", new_temp, " | Difference (total fish - temp):", diff)
+	else:
+		var update_query = "UPDATE Inventory SET quest = 0"
+		if db.query(update_query) == false:
+			print("Failed to deactivate quest:", db.error_message)
+		else:
+			print("Quest deactivated.")
 
 func get_data() -> Array:
 	if db.query("SELECT * FROM Inventory LIMIT 1") == false:
@@ -76,8 +99,7 @@ func get_data() -> Array:
 	return db.query_result
 
 func get_fish_counts() -> Dictionary:
-	# Query for laks, torsk, bluefish, tun, and coin.
-	if db.query("SELECT laks, torsk, bluefish, tun FROM Inventory LIMIT 1") == false:
+	if db.query("SELECT laks, torsk, bluefish, tun, coin, temp, quest FROM Inventory LIMIT 1") == false:
 		print("SQL Query failed in get_fish_counts():", db.error_message)
 		return {}
 	return db.query_result[0]
@@ -87,7 +109,6 @@ func increase_fish(fish_column: String, amount: int = 1) -> void:
 	if db.query(query) == false:
 		print("Failed to update fish count:", db.error_message)
 	else:
-		# Re-query just the updated fish column.
 		if db.query("SELECT %s AS new_count FROM Inventory LIMIT 1" % fish_column) == false:
 			print("Failed to re-query fish count for", fish_column, ":", db.error_message)
 		else:
@@ -99,7 +120,6 @@ func increase_coins(amount: int) -> void:
 	if db.query(query) == false:
 		print("Failed to update coins:", db.error_message)
 	else:
-		# Re-query coin count.
 		if db.query("SELECT coin AS new_count FROM Inventory LIMIT 1") == false:
 			print("Failed to re-query coin count:", db.error_message)
 		else:
@@ -108,9 +128,14 @@ func increase_coins(amount: int) -> void:
 
 func _on_fishing_win(column_name: String) -> void:
 	increase_fish(column_name, 1)
-
-	if has_node("QuestDisplay"):
-		var quest_display = $QuestDisplay
-		if quest_display.quest:
-			if quest_display.quest.use_total_fish or quest_display.quest.fish_column == column_name:
-				quest_display.update_from_db(column_name)
+	
+func print_temp_difference() -> void:
+	# Query the total fish and the current temp value from the Inventory table.
+	var query = "SELECT (laks + torsk + bluefish + tun) AS total_fish, temp FROM Inventory LIMIT 1"
+	if db.query(query) == false:
+		print("Failed to query total fish and temp:", db.error_message)
+		return
+	var total_fish = int(db.query_result[0]["total_fish"])
+	var temp_value = int(db.query_result[0]["temp"])
+	var diff = total_fish - temp_value
+	print("Difference (total fish - temp):", diff)
