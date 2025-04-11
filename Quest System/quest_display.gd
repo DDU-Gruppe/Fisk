@@ -40,7 +40,7 @@ func load_available_quests() -> Array:
 	quest2.use_total_fish = false
 	quest2.fish_column = "laks"
 	quests.append(quest2)
-	
+
 	var quest3 = Quest.new()
 	quest3.id = 3
 	quest3.name = "Fang Fisk"
@@ -61,7 +61,7 @@ func set_next_quest():
 			show_gui()
 			return
 		current_quest_index += 1
-	
+
 	# No available quests left, hide the GUI
 	hide_gui()
 
@@ -71,7 +71,7 @@ func set_quest(new_quest: Quest):
 	var quest_data = DatabaseManager.load_quest_data(quest.id)
 	quest.start_value = quest_data["start_value"]
 	quest.progress = quest_data["progress"]
-	
+
 	# If start_value is not set, initialize it
 	if quest.start_value == 0:
 		update_quest_data()
@@ -79,14 +79,14 @@ func set_quest(new_quest: Quest):
 		DatabaseManager.save_quest_data(quest.id, quest.start_value, quest.progress, false)
 	else:
 		fixed_goal = quest.goal + quest.start_value
-	
+
 	# If the quest is already completed, disable the reward
 	if quest_data["is_completed"] == 1:
 		reward_label.text = "Reward: Claimed"
 		reward_label.modulate = Color(0.5, 0.5, 0.5)  # Gray out the reward
 	else:
 		update_display()
-	
+
 	print("Quest set:", quest.name, "Start value:", quest.start_value, "Fixed goal:", fixed_goal)
 
 func update_quest_data():
@@ -109,11 +109,11 @@ func update_display():
 func update_progress(value: int):
 	quest.progress = clamp(value, 0, quest.goal)
 	update_display()
-	
+
 	# Save progress to the database
 	var quest_data = DatabaseManager.load_quest_data(quest.id)
 	DatabaseManager.save_quest_data(quest.id, quest.start_value, quest.progress, quest_data["is_completed"])
-	
+
 	# Check if the quest is complete
 	if quest.is_complete() and quest_data["is_completed"] == 0:
 		print("QUEST COMPLETE! Reward:", quest.reward)

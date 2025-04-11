@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://xax2338lav6g"]
+[gd_scene load_steps=20 format=3 uid="uid://xax2338lav6g"]
 
 [ext_resource type="Script" path="res://Scripts/Onboat.gd" id="1_r5u17"]
 [ext_resource type="Script" path="res://Scripts/lilbuddyman.gd" id="2_wa5rn"]
+[ext_resource type="PackedScene" uid="uid://evkdvggt0bkw" path="res://Scenes/fishing_minigame.tscn" id="3_tck0l"]
 [ext_resource type="Texture2D" uid="uid://cg2tjdgvbnjik" path="res://Fisker.png" id="4_gp5pd"]
 [ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="5_70rhm"]
 
@@ -105,6 +106,7 @@ script = ExtResource("1_r5u17")
 
 [node name="Lilbuddyman" type="CharacterBody2D" parent="."]
 script = ExtResource("2_wa5rn")
+fishing_game_scene = ExtResource("3_tck0l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lilbuddyman"]
 shape = SubResource("RectangleShape2D_lej23")

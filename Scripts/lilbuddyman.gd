@@ -37,21 +37,25 @@ func startFishingMode() -> void:
 	is_fishing = true
 	can_move = false
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position:x", 0.0, 0.5)
+	tween.tween_property(self, "position:x", -40.0, 0.5)
 	await tween.finished
 	print("Reached left side. Playing 'Fishing' animation.")
+
+	# Connect to the animation_finished signal using a Callable
+	animated_sprite.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	animated_sprite.play("Fishing")
-	var anim_length = get_animation_length(animated_sprite.sprite_frames, "Fishing")
-	print("Computed Fishing animation length:", anim_length)
-	if anim_length <= 0:
-		print("Fishing animation length is zero; starting minigame immediately.")
-		startFishingGame()
-	else:
-		# Create a timer that runs even if the scene is paused by passing false
-		await get_tree().create_timer(anim_length, false).timeout
-		print("Timer timeout reached. Starting fishing minigame.")
-		startFishingGame()
-	is_fishing = false
+
+func _on_animation_finished() -> void:
+	# Disconnect the signal to avoid multiple calls
+	animated_sprite.disconnect("animation_finished", Callable(self, "_on_animation_finished"))
+
+	# Stop the animation and set it to the last frame
+	animated_sprite.stop()
+	animated_sprite.frame = animated_sprite.sprite_frames.get_frame_count("Fishing") - 1
+	print("Fishing animation finished. Starting fishing minigame.")
+
+	# Start the fishing minigame
+	startFishingGame()
 
 func get_animation_length(frames: SpriteFrames, anim_name: String) -> float:
 	var total: float = 0.0
