@@ -1,14 +1,14 @@
-extends Node
+extends Node	
 
 # Static flags to persist state even if the script is reloaded.
 static var instance_initialized: bool = false
 static var number_incremented: bool = false
 
+
 func _ready():
+	var quest = $UI/QuestDisplay
 	# Load the quest resource
-	var quest = preload("res://Quest System/20_fish.tres")
-	$QuestDisplay.set_quest(quest)
-	#$QuestDisplay.update_from_db(quest.fish_column)
+	#quest.update_from_db(quest.fish_column)
 
 
 	# Instantiate the SQLite object (assuming the plugin registers a global class named "SQLite").

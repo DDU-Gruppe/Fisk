@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://besjg2qgh1bd5"]
+[gd_scene load_steps=15 format=3 uid="uid://besjg2qgh1bd5"]
 
 [ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_hy2ld"]
 [ext_resource type="Material" uid="uid://cgjocunkt7lim" path="res://Assets/Tiles/Water/WaterMaterial.tres" id="1_ke2rv"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://dxx2m7aabr2u" path="res://Assets/boat.png" id="8_uqef8"]
 [ext_resource type="Script" path="res://Scripts/DatabaseManager.gd" id="9_1d2y1"]
 [ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="10_l3s7v"]
-[ext_resource type="PackedScene" uid="uid://d1oq4darui5c4" path="res://Quest System/QuestDisplay.tscn" id="12_y6yg5"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yv0sr"]
 viewport_path = NodePath("CharacterBody2D/watertrail/SubViewport")
@@ -58,21 +57,21 @@ parent = NodePath("../../..")
 largest_tip_width = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/watertrail/SubViewport"]
-position = Vector2(129.975, 128)
-scale = Vector2(1.986, 0.987)
+position = Vector2(128, 128)
+scale = Vector2(1.806, 0.898)
 texture = ExtResource("4_aagcd")
 
 [node name="RopeLine" type="Line2D" parent="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(1, -4)
+position = Vector2(3, 0)
+rotation = 3.14159
 texture = ExtResource("8_uqef8")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
-position = Vector2(1.75, 0.249992)
-rotation = 1.57079
-scale = Vector2(1.625, 1.80078)
-polygon = PackedVector2Array(0, -16, 4, -15, 7, -11, 8, -6, 8, 16, -8, 16, -8, -6, -7, -11, -4, -15)
+position = Vector2(3, 0)
+rotation = -3.14159
+polygon = PackedVector2Array(30, 5, 24, 11, 22, 12, 19, 13, 1, 13, -9, 12, -13, 11, -16, 10, -20, 8, -27, 1, -27, -0.999998, -20, -8, -16, -10, -13, -11, -9, -12, 0.999999, -13, 19, -13, 22, -12, 24, -11, 30, -5)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(1.86, 1.86)
@@ -82,24 +81,23 @@ position_smoothing_speed = 2.0
 [node name="ColorRect" type="ColorRect" parent="CharacterBody2D/Camera2D"]
 z_index = -1
 material = ExtResource("1_ke2rv")
-offset_left = -1302.0
-offset_top = -879.0
-offset_right = 873.0
-offset_bottom = 1012.0
+offset_left = -2642.0
+offset_top = -1834.0
+offset_right = -467.0
+offset_bottom = 57.0
+scale = Vector2(2.72, 2.72)
 color = Color(0, 0.356863, 1, 1)
 
-[node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
-offset_left = -97.0
-offset_top = -93.0
-offset_right = 99.0
-offset_bottom = -44.0
+[node name="UI" parent="." instance=ExtResource("10_l3s7v")]
+
+[node name="Label" type="Label" parent="UI"]
+offset_left = 477.0
+offset_top = 45.0
+offset_right = 673.0
+offset_bottom = 94.0
 theme_override_font_sizes/font_size = 16
 text = "Press g for on boat scene
 arrowkeys for movement"
 
-[node name="UI" parent="." instance=ExtResource("10_l3s7v")]
-
 [node name="Database" type="Node" parent="."]
 script = ExtResource("9_1d2y1")
-
-[node name="QuestDisplay" parent="." instance=ExtResource("12_y6yg5")]

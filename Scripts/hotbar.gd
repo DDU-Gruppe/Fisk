@@ -11,8 +11,9 @@ func _process(_delta):
 
 func update_fish_counts():
 	var counts = DatabaseManager.get_fish_counts()
+	var coin = DatabaseManager.get_coin_counts()
 	slot0_label.text = str(counts.get("laks", 0))
 	slot1_label.text = str(counts.get("torsk", 0))
 	slot2_label.text = str(counts.get("bluefish", 0))
 	slot3_label.text = str(counts.get("tun", 0))
-	slot4_label.text = str(counts.get("coin",0))
+	slot4_label.text = str(coin.get("coin",0))

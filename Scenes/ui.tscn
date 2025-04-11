@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dv3tjrpsbirqi"]
+[gd_scene load_steps=8 format=3 uid="uid://dv3tjrpsbirqi"]
 
 [ext_resource type="Script" path="res://Scripts/hotbar.gd" id="1_10et2"]
 [ext_resource type="Texture2D" uid="uid://dgned5q4kemno" path="res://Assets/Fish/laks.png" id="2_xkml2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b45n63scaditd" path="res://Assets/Fish/bluefish.png" id="4_i35v6"]
 [ext_resource type="Texture2D" uid="uid://co0a1wsc1utas" path="res://Assets/Fish/tun.png" id="5_ab7qh"]
 [ext_resource type="Texture2D" uid="uid://cqirjx06p5obd" path="res://Assets/coin.png" id="6_rcx8d"]
+[ext_resource type="PackedScene" uid="uid://d1oq4darui5c4" path="res://Quest System/QuestDisplay.tscn" id="7_7wcrr"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -109,3 +110,5 @@ offset_bottom = 73.0
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="QuestDisplay" parent="." instance=ExtResource("7_7wcrr")]
