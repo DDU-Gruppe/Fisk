@@ -90,6 +90,12 @@ func get_fish_counts() -> Dictionary:
 		return {}
 	return db.query_result[0]
 
+func get_coin_counts() -> Dictionary:
+	if db.query("SELECT coin FROM Inventory LIMIT 1") == false:
+		print("SQL Query failed in get_coin:counts():", db.error_message)
+		return{}
+	return db.query_result[0]
+
 func increase_fish(fish_column: String, amount: int = 1) -> void:
 	var query = "UPDATE Inventory SET %s = COALESCE(%s, 0) + %d" % [fish_column, fish_column, amount]
 	print("Running query:", query)
