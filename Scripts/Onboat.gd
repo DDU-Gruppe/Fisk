@@ -10,7 +10,7 @@ func _ready():
 		print("onboat: Lilbuddyman found.")
 		#original_position = boat_character.position
 		#print("Original position of lilbuddyman:", original_position)
-		
+
 	#var quest = preload("res://Quest System/20_fish.tres")
 	#$UI/QuestDisplay.set_quest(quest)
 	#$UI/QuestDisplay.update_from_db(quest.fish_column)
@@ -21,7 +21,7 @@ func _process(_delta):
 func _input(event):
 	if event.is_action_pressed("toggle_boat_scene"):
 		get_tree().change_scene_to_file("res://Scenes/main game.tscn")
-	
+
 	if event.is_action_pressed("start_fishing") and not is_fishing:
 		if lilbuddyman:
 			is_fishing = true
