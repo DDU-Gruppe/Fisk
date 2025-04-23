@@ -39,6 +39,7 @@ func startFishingMode() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position:x", -40.0, 0.5)
 	tween.tween_property(self, "position:y", -1.0, 0.5)
+	animated_sprite.flip_h = 0
 	await tween.finished
 	print("Reached left side. Playing 'Fishing' animation.")
 

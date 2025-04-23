@@ -6,22 +6,20 @@ extends CanvasLayer
 @onready var progress_bar = $VBoxContainer/ProgressBar
 
 var quest: Quest
-var fixed_goal: int  # Store the effective goal (quest.goal + start_value) once
-var available_quests: Array = []  # List of available quests
-var current_quest_index: int = 0  # Track the current quest
+var fixed_goal: int
+var available_quests: Array = []
+var current_quest_index: int = 0
 
 func _ready():
-	# Load available quests (you can define this elsewhere, e.g., in a global quest list)
 	available_quests = load_available_quests()
 	if available_quests.is_empty():
 		hide_gui()
 	else:
 		set_next_quest()
-		update_from_db(quest.name)
+		#update_from_db(quest.fish_column)
+		#update_from_db(quest.name)
 
 func load_available_quests() -> Array:
-	# Placeholder: Replace with your quest loading logic
-	# Example: Load quests from a predefined list or database
 	var quests = []
 	var quest1 = Quest.new()
 	quest1.id = 1
@@ -49,11 +47,11 @@ func load_available_quests() -> Array:
 	quest3.goal = 20
 	quest3.reward = 20
 	quest3.use_total_fish = true
+	quests.append(quest3)
 
 	return quests
 
 func set_next_quest():
-	# Find the next incomplete quest
 	while current_quest_index < available_quests.size():
 		var potential_quest = available_quests[current_quest_index]
 		var quest_data = DatabaseManager.load_quest_data(potential_quest.id)
@@ -63,17 +61,16 @@ func set_next_quest():
 			return
 		current_quest_index += 1
 
-	# No available quests left, hide the GUI
+	# No available quests left
+	quest = null
 	hide_gui()
 
 func set_quest(new_quest: Quest):
 	quest = new_quest
-	# Load quest data from the database
 	var quest_data = DatabaseManager.load_quest_data(quest.id)
 	quest.start_value = quest_data["start_value"]
 	quest.progress = quest_data["progress"]
 
-	# If start_value is not set, initialize it
 	if quest.start_value == 0:
 		update_quest_data()
 		fixed_goal = quest.goal + quest.start_value
@@ -81,14 +78,15 @@ func set_quest(new_quest: Quest):
 	else:
 		fixed_goal = quest.goal + quest.start_value
 
-	# If the quest is already completed, disable the reward
 	if quest_data["is_completed"] == 1:
 		reward_label.text = "Reward: Claimed"
-		reward_label.modulate = Color(0.5, 0.5, 0.5)  # Gray out the reward
+		reward_label.modulate = Color(0.5, 0.5, 0.5)
 	else:
 		update_display()
 
 	print("Quest set:", quest.name, " Start value:", quest.start_value, " Fixed goal:", fixed_goal)
+
+	update_from_db(quest.fish_column if not quest.use_total_fish else "")
 
 func update_quest_data():
 	var counts = DatabaseManager.get_fish_counts()
@@ -99,6 +97,14 @@ func update_quest_data():
 		if quest.start_value == 0:
 			quest.start_value = total_fish
 			print("Initial start value set to:", quest.start_value)
+			DatabaseManager.save_quest_data(quest.id, quest.name, quest.objective, quest.start_value, quest.progress, false)
+			update_from_db(quest.name)
+	else:
+		if quest.fish_column in counts and quest.start_value == 0:
+			quest.start_value = counts[quest.fish_column]
+			print("Initial start value for", quest.fish_column, "set to:", quest.start_value)
+			DatabaseManager.save_quest_data(quest.id, quest.name, quest.objective, quest.start_value, quest.progress, false)
+			update_from_db(quest.fish_column)
 
 func update_display():
 	name_label.text = "Quest: " + quest.name
@@ -108,24 +114,30 @@ func update_display():
 	progress_bar.value = quest.progress
 
 func update_progress(value: int):
+	if quest == null:
+		print("No active quest. Skipping progress update.")
+		return
+
 	quest.progress = clamp(value, 0, quest.goal)
 	update_display()
 
-	# Save progress to the database
 	var quest_data = DatabaseManager.load_quest_data(quest.id)
 	DatabaseManager.save_quest_data(quest.id, quest.name, quest.objective, quest.start_value, quest.progress, false)
 
-	# Check if the quest is complete
 	if quest.is_complete() and quest_data["is_completed"] == 0:
 		print("QUEST COMPLETE! Reward:", quest.reward)
 		DatabaseManager.increase_coins(quest.reward)
 		DatabaseManager.save_quest_data(quest.id, quest.name, quest.objective, quest.start_value, quest.progress, 1)
 		reward_label.text = "Reward: Claimed"
-		reward_label.modulate = Color(0.5, 0.5, 0.5)  # Gray out the reward
+		reward_label.modulate = Color(0.5, 0.5, 0.5)
 		current_quest_index += 1
 		set_next_quest()
 
 func update_from_db(fish_column: String):
+	if quest == null:
+		print("No active quest. Skipping update.")
+		return
+
 	var fish_counts = DatabaseManager.get_fish_counts()
 	print("Fish counts from DB:", fish_counts)
 

@@ -1,11 +1,17 @@
-[gd_scene load_steps=21 format=3 uid="uid://xax2338lav6g"]
+[gd_scene load_steps=25 format=3 uid="uid://xax2338lav6g"]
 
 [ext_resource type="Script" path="res://Scripts/Onboat.gd" id="1_r5u17"]
+[ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="2_ewphw"]
 [ext_resource type="Script" path="res://Scripts/lilbuddyman.gd" id="2_wa5rn"]
+[ext_resource type="Texture2D" uid="uid://2lul8k14hwv5" path="res://Assets/Shaders/CircleBlur64x64.png" id="3_tb60v"]
 [ext_resource type="PackedScene" uid="uid://evkdvggt0bkw" path="res://Scenes/fishing_minigame.tscn" id="3_tck0l"]
 [ext_resource type="Texture2D" uid="uid://cg2tjdgvbnjik" path="res://Fisker.png" id="4_gp5pd"]
 [ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="5_70rhm"]
 [ext_resource type="Texture2D" uid="uid://ceqchtb5h5tey" path="res://Assets/Badstor.png" id="5_rfsn5"]
+[ext_resource type="Material" uid="uid://cgjocunkt7lim" path="res://Assets/Tiles/Water/WaterMaterial.tres" id="7_1iump"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p3yhq"]
+viewport_path = NodePath("watertrail/SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lej23"]
 
@@ -105,6 +111,22 @@ animations = [{
 [node name="boat" type="Node2D"]
 script = ExtResource("1_r5u17")
 
+[node name="watertrail" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="watertrail"]
+material = ExtResource("2_ewphw")
+texture = SubResource("ViewportTexture_p3yhq")
+
+[node name="SubViewport" type="SubViewport" parent="watertrail"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="Sprite2D" type="Sprite2D" parent="watertrail/SubViewport"]
+position = Vector2(134.89, 128)
+scale = Vector2(3.421, 1.701)
+texture = ExtResource("3_tb60v")
+
 [node name="Badstor" type="Sprite2D" parent="."]
 texture = ExtResource("5_rfsn5")
 
@@ -137,3 +159,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 42
 text = "Press space for minigame"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+material = ExtResource("7_1iump")
+offset_left = -2642.0
+offset_top = -1834.0
+offset_right = -467.0
+offset_bottom = 57.0
+scale = Vector2(2.72, 2.72)
+color = Color(0, 0.356863, 1, 1)
