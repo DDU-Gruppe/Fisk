@@ -8,7 +8,6 @@ static var number_incremented: bool = false
 func _ready():
 	pass
 
-
 	# Instantiate the SQLite object (assuming the plugin registers a global class named "SQLite").
 func _input(event):
 	if event.is_action_pressed("toggle_boat_scene"):

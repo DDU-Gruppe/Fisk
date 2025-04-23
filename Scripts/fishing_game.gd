@@ -37,7 +37,6 @@ func _physics_process(_delta: float) -> void:
 	catch_bar.value = catchingValue
 	if catchingValue >= 100.0:
 		_game_end()
-		get_tree().change_scene_to_file("res://Scenes/OnBoat.tscn")
 	elif catchingValue <= 0.0:
 		_game_fail()
 
@@ -59,6 +58,7 @@ func _game_end() -> void:
 
 	# Optionally unpause the game and free this scene.
 	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/OnBoat.tscn")
 	queue_free()
 
 func _game_fail() -> void:
@@ -66,7 +66,8 @@ func _game_fail() -> void:
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		_game_fail()
+		#_game_fail()
+		_game_end()
 
 func _on_target_target_entered() -> void:
 	onCatch = true

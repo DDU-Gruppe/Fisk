@@ -78,13 +78,13 @@ func ensure_inventory_row() -> void:
 			else:
 				print("Default Inventory row inserted.")
 
-func save_quest_data(quest_id: int, start_value: int, progress: int, is_completed: int) -> void:
+func save_quest_data(quest_id: int, quest_name: String, objective: String, start_value: int, progress: int, is_completed: int) -> void:
 	# Save or update quest data in the database
 	var query = """
-	INSERT OR REPLACE INTO quests (quest_id, start_value, progress, is_completed)
-	VALUES (?, ?, ?, ?);
+	INSERT OR REPLACE INTO quests (quest_id, name, objective, start_value, progress, is_completed)
+	VALUES (?, ?, ?, ?, ?, ?);
 	"""
-	if db.query_with_bindings(query, [quest_id, start_value, progress, int(is_completed)]):
+	if db.query_with_bindings(query, [quest_id, quest_name, objective, start_value, progress, int(is_completed)]):
 		print("Quest data saved for quest_id:", quest_id)
 	else:
 		print("Failed to save quest data for quest_id:", quest_id, "Error:", db.error_message)

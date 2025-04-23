@@ -13,7 +13,7 @@ offset_left = -290.0
 offset_bottom = 108.0
 grow_horizontal = 0
 
-[node name="StatusLabel" type="Label" parent="VBoxContainer"]
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="ObjectiveLabel" type="Label" parent="VBoxContainer"]
