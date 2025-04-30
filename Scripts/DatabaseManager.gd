@@ -63,7 +63,7 @@ func _init():
 				print("Current number is:", row["number"])
 	else:
 		print("Failed to open database at: ", target_db_path)
-
+# please end me
 func ensure_inventory_row() -> void:
 	# Ensure there's at least one row in the Inventory table.
 	if db.query("SELECT COUNT(*) AS cnt FROM Inventory") == false:

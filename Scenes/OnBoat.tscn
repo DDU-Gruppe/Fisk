@@ -136,7 +136,6 @@ fishing_game_scene = ExtResource("3_tck0l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lilbuddyman"]
 shape = SubResource("RectangleShape2D_lej23")
-debug_color = Color(1, 1, 1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Lilbuddyman"]
 sprite_frames = SubResource("SpriteFrames_0hb0k")

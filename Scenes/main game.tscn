@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://besjg2qgh1bd5"]
+[gd_scene load_steps=16 format=3 uid="uid://besjg2qgh1bd5"]
 
 [ext_resource type="Material" uid="uid://tj1entgdpoef" path="res://Assets/Shaders/WaterTrailSpriteMaterial.tres" id="1_hy2ld"]
 [ext_resource type="Material" uid="uid://cgjocunkt7lim" path="res://Assets/Tiles/Water/WaterMaterial.tres" id="1_ke2rv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dxx2m7aabr2u" path="res://Assets/boat.png" id="8_uqef8"]
 [ext_resource type="Script" path="res://Scripts/DatabaseManager.gd" id="9_1d2y1"]
 [ext_resource type="PackedScene" uid="uid://dv3tjrpsbirqi" path="res://Scenes/ui.tscn" id="10_l3s7v"]
+[ext_resource type="PackedScene" uid="uid://b3ujcu3o6ro5j" path="res://tiles.tscn" id="12_d4i25"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yv0sr"]
 viewport_path = NodePath("CharacterBody2D/watertrail/SubViewport")
@@ -101,3 +102,7 @@ arrowkeys for movement"
 
 [node name="Database" type="Node" parent="."]
 script = ExtResource("9_1d2y1")
+
+[node name="Node2D" parent="." instance=ExtResource("12_d4i25")]
+position = Vector2(-406, -195)
+scale = Vector2(2.375, 2.375)
